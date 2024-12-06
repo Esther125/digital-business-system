@@ -14,7 +14,7 @@ python -m venv myenv
 source myenv/bin/activate
 ```
 
-## Start the server
+### Start the server
 
 ```shell
 # Install dependencies
