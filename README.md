@@ -2,7 +2,7 @@
 
 ## Digital Business Applications Final Project
 
-### Set up virtual environment
+### Setup virtual environment
 
 ```shell
 python -m venv myenv
@@ -21,4 +21,13 @@ source myenv/bin/activate
 pip install -r requirements.txt
 
 uvicorn src.main:app --reload
+```
+
+### Setup pre-commit
+
+```bash
+pre-commit install
+
+# Manually check all files
+pre-commit run --all-files
 ```
