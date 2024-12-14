@@ -1,0 +1,217 @@
+.cr-mpage,
+.cr-mpage * {
+  box-sizing: border-box;
+}
+.cr-mpage {
+  background: #f1f9ff;
+  height: 852px;
+  position: relative;
+  overflow: hidden;
+}
+.rfm-customer-group {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-4 {
+  background: #fffcdf;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: #014194;
+  border-width: 1px;
+  height: 43px;
+  position: absolute;
+  right: 71px;
+  left: 71px;
+  top: 104px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.div {
+  color: #000000;
+  text-align: center;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: absolute;
+  right: 115.07px;
+  left: 115.06866455078125px;
+  top: 110px;
+  height: 30px;
+}
+.order-list {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-42 {
+  background: #fffcdf;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: #014194;
+  border-width: 1px;
+  height: 43px;
+  position: absolute;
+  right: 71px;
+  left: 71px;
+  top: 266px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.div2 {
+  color: #000000;
+  text-align: center;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: absolute;
+  right: 115.07px;
+  left: 115.06867218017578px;
+  top: 272px;
+  height: 30px;
+}
+.customer-list {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-43 {
+  background: #fffcdf;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: #014194;
+  border-width: 1px;
+  height: 43px;
+  position: absolute;
+  right: 71px;
+  left: 71px;
+  top: 428px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.div3 {
+  color: #000000;
+  text-align: center;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: absolute;
+  right: 115.07px;
+  left: 115.06867218017578px;
+  top: 434px;
+  height: 30px;
+}
+.ai {
+  color: #000000;
+  text-align: left;
+  position: absolute;
+  right: 32px;
+  left: 33px;
+  top: 16px;
+  height: 69px;
+}
+.ai-span {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+.ai-span2 {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+}
+.ai-span3 {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+.ai2 {
+  color: #000000;
+  text-align: left;
+  position: absolute;
+  right: 32px;
+  left: 33px;
+  top: 178px;
+  height: 69px;
+}
+.ai-2-span {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+.ai-2-span2 {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+}
+.ai-2-span3 {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+.ai3 {
+  color: #000000;
+  text-align: left;
+  position: absolute;
+  right: 32px;
+  left: 33px;
+  top: 340px;
+  height: 69px;
+}
+.ai-3-span {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+.ai-3-span2 {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+}
+.ai-3-span3 {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+.line-1 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  height: 0px;
+  position: absolute;
+  right: 20px;
+  left: 21px;
+  top: 166px;
+  transform-origin: 0 0;
+  transform: rotate(-0.163deg) scale(1, 1);
+}
+.line-2 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  height: 0px;
+  position: absolute;
+  right: 20px;
+  left: 21px;
+  top: 328px;
+  transform-origin: 0 0;
+  transform: rotate(-0.163deg) scale(1, 1);
+}
+.line-4 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  height: 0px;
+  position: absolute;
+  right: 20px;
+  left: 21px;
+  top: 652px;
+  transform-origin: 0 0;
+  transform: rotate(-0.163deg) scale(1, 1);
+}

@@ -1,0 +1,104 @@
+.page-head {
+    background: rgba(1, 64, 152, 0.42);
+    padding: 10px 160px 10px 160px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    backdrop-filter: blur(15px);
+  }
+  .group-1 {
+    flex-shrink: 0;
+    width: 73px;
+    height: 82px;
+    position: static;
+  }
+  .quanta-computer {
+    color: #000000;
+    text-align: center;
+    font-family: "Kanit-Regular", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+    bottom: 4px;
+    width: 146px;
+    height: 19px;
+  }
+  .logo {
+    width: 73px;
+    height: 63px;
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+    bottom: 23px;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+    object-fit: cover;
+  }
+  .index {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    left: 6px;
+    bottom: 4px;
+    object-fit: cover;
+  }
+  .user {
+    flex-shrink: 0;
+    width: 44px;
+    height: 43px;
+    position: absolute;
+    right: -36px;
+    bottom: 4px;
+    transform-origin: 0 0;
+    transform: rotate(0deg) scale(-1, 1);
+    object-fit: cover;
+  }
+  .page-tail {
+    background:rgba(1, 64, 152, 0.42);
+    padding: 10px 160px 10px 160px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    height: 105px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    bottom: -52px;
+    backdrop-filter: blur(15px);
+  }
+  .group-12 {
+    flex-shrink: 0;
+    width: 73px;
+    height: 13px;
+    position: static;
+  }
+  .group-13 {
+    color: #000000;
+    text-align: center;
+    font-family: "Kanit-Regular", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    position: absolute;
+    right: 160px;
+    left: 160px;
+    bottom: 70px;
+  }
+  .frame-3 {
+    height: 720px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    top: 100px;
+    overflow-y: auto;
+  }
