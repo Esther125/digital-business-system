@@ -4,6 +4,7 @@
     <title>Sign Up Page</title>
     <link rel="stylesheet" href="CSS/signUpStyle.css">
     <link rel="stylesheet" href="CSS/style.css">
+    <script src="js/SignUpPage.js"></script>
 </head>
 <body>
     <div class="sign-up-page">
@@ -18,15 +19,13 @@
         <img class="index" src="Assets/index0.png" />
         <a href="LogInPage.html"><img class="user" src="Assets/user0.png" /></a>
       </div>
-        <div class="page-tail">
-          <div class="group-12">
-            <div class="group-13">Group 1</div>
-          </div>
+      <div class="page-tail">
+        <div class="group-12">
+          <div class="group-13">Group 1</div>
         </div>
+      </div>
         <div class="frame-3">
-          <div class="rectangle-4"></div>
-          <div class="div">點擊註冊</div>
-          <div class="ai">
+          <div class="ai" id="output">
             <span>
               <span class="ai-span">開始註冊</span>
               <span class="ai-span2">
@@ -41,30 +40,29 @@
           <div class="user-type-id">
             <div class="label">身份識別碼</div>
             <div class="input">
-              <div class="value">請洽相關部門獲得識別碼</div>
+              <input id="passID" type="text" placeholder="請洽相關部門獲得識別碼" value="" />
             </div>
           </div>
           <div class="email-address">
             <div class="label">電子郵件</div>
             <div class="input">
-              <div class="value">請輸入常用信箱</div>
+              <input id="email-address" type="text" placeholder="請輸入常用信箱" value=""/>
             </div>
           </div>
           <div class="set-password">
             <div class="label">密碼</div>
             <div class="input">
-              <div class="value">請設定您的密碼</div>
+              <input  id="set-password" type="text" placeholder="請設定您的密碼" value=""/>
             </div>
           </div>
           <div class="check-password">
             <div class="label">密碼確認</div>
             <div class="input">
-              <div class="value">請設定您的密碼</div>
+              <input id="check-password" type="text" placeholder="請確認您的密碼" value=""/>
             </div>
           </div>
+            <button type="button" onclick="getData()">點擊註冊</button>
         </div>
       </div>
-      
-      
 </body>
 </html>

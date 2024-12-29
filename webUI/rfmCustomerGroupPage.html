@@ -4,6 +4,7 @@
     <title>RFM Customer Group Page</title>
     <link rel="stylesheet" href="CSS/rfmCustomerGroupPageStyle.css">
     <link rel="stylesheet" href="CSS/style.css">
+    <script src="js/rfmCustomerGroupPage.js"></script>
 </head>
 <body>
     <div class="rfm-page">
@@ -49,7 +50,7 @@
                             <th>RFM等級</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="output">
                         <tr>
                             <td>C01</td>
                             <td>20241130</td>
@@ -68,9 +69,9 @@
                   </table>
                 </span>
               </span>
+              <button type="button"value="get result" onclick="output()">刷新 </button> 
             </div>
           </div>
-      </div>
-      
+      </div>      
 </body>
 </html>

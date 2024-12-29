@@ -44,14 +44,14 @@
   position: relative;
   align-self: stretch;
 }
-.input {
+input {
   background: var(--var-sds-color-background-default-default, #ffffff);
   border-radius: var(--var-sds-size-radius-200, 8px);
   border-style: solid;
   border-color: var(--var-sds-color-border-default-default, #d9d9d9);
   border-width: 1px;
   padding: var(--var-sds-size-space-300, 12px)
-    var(--var-sds-size-space-400, 16px) var(--var-sds-size-space-300, 12px)
+    var(--var-sds-size-space-400, 150px) var(--var-sds-size-space-300, 12px)
     var(--var-sds-size-space-400, 16px);
   display: flex;
   flex-direction: row;
@@ -63,20 +63,6 @@
   min-width: 240px;
   position: relative;
   overflow: hidden;
-}
-.value {
-  color: var(--var-sds-color-text-default-tertiary, #b3b3b3);
-  text-align: left;
-  font-family: var(
-    --single-line-body-base-font-family,
-    "Inter-Regular",
-    sans-serif
-  );
-  font-size: var(--single-line-body-base-font-size, 16px);
-  line-height: var(--single-line-body-base-line-height, 100%);
-  font-weight: var(--single-line-body-base-font-weight, 400);
-  position: relative;
-  flex: 1;
 }
 .password {
   display: flex;
@@ -98,11 +84,14 @@
   flex-shrink: 0;
   position: relative;
 }
-.button {
-  background: var(--var-sds-color-background-brand-default, #2c2c2c);
-  border-radius: var(--var-sds-size-radius-200, 8px);
+button {
+  color: #000000;
+  text-align: center;
+  font-family: "Kanit-Regular", sans-serif;
+  background: #fffcdf;
+  border-radius: 40px;
   border-style: solid;
-  border-color: var(--var-sds-color-border-brand-default, #2c2c2c);
+  border-color: #014194;
   border-width: 1px;
   padding: var(--var-sds-size-space-300, 12px);
   display: flex;
@@ -114,29 +103,6 @@
   position: relative;
   overflow: hidden;
 }
-.button2 {
-  color: var(--var-sds-color-text-brand-on-brand, #f5f5f5);
-  text-align: left;
-  font-family: var(
-    --single-line-body-base-font-family,
-    "Inter-Regular",
-    sans-serif
-  );
-  font-size: var(--single-line-body-base-font-size, 16px);
-  line-height: var(--single-line-body-base-line-height, 100%);
-  font-weight: var(--single-line-body-base-font-weight, 400);
-  position: relative;
-}
-.forgot-passeord {
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
 .text-link {
   color: var(--var-sds-color-text-default-default, #1e1e1e);
   text-align: left;
@@ -147,14 +113,11 @@
   text-decoration: underline;
   position: relative;
 }
-.forgot-passeord2 {
+.toSignUp {
   display: flex;
-  flex-direction: row;
   gap: 0px;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 73px;
-  position: absolute;
-  left: calc(50% - -93.5px);
-  top: 454px;
+  width: 90px;
+  position: relative;
 }

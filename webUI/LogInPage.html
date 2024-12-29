@@ -18,39 +18,31 @@
         <img class="index" src="Assets/index0.png" />
         <a href="LogInPage.html"><img class="user" src="Assets/user0.png" /></a>
       </div>
-        <div class="page-tail">
-          <div class="group-12">
-            <div class="group-13">Group 1</div>
-          </div>
-        </div>
-        <div class="form-log-in">
-          <div class="email">
-            <div class="label">電子郵件</div>
-            <div class="input">
-              <div class="value">請輸入您註冊的電子郵件</div>
-            </div>
-          </div>
-          <div class="password">
-            <div class="label">密碼</div>
-            <div class="input">
-              <div class="value">請輸入您的密碼</div>
-            </div>
-          </div>
-          <div class="log-in">
-            <div class="button">
-              <div class="button2">登入</div>
-            </div>
-          </div>
-          <div class="forgot-passeord">
-            <div class="text-link">忘記密碼</div>
-          </div>
-        </div>
-        <div class="forgot-passeord2">
-          <div class="text-link">註冊新帳號</div>
+      <div class="page-tail">
+        <div class="group-12">
+          <div class="group-13">Group 1</div>
         </div>
       </div>
-      
-    
-      
+      <div class="form-log-in">
+        <div class="email">
+          <div class="label">電子郵件</div>
+          <div class="input">
+            <input id="email-address" type="text" placeholder="請輸入您的電子郵件" value="" />
+          </div>
+        </div>
+        <div class="password">
+          <div class="label">密碼</div>
+          <div class="input">
+            <input id="password" type="text" placeholder="請輸入您的密碼" value="" />
+          </div>
+        </div>
+        <div class="log-in">
+          <button type="button" onclick="getData()">登入</button>
+        </div>
+        <div class="toSignUp">
+          <a href="SignUpPage.html"><div class="text-link">註冊新帳號</div></a>
+        </div>
+        <div class="toSignUp" id="ootput"></div>
+    </div>
 </body>
 </html>
