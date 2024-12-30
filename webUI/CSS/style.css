@@ -1,5 +1,9 @@
 .page-head {
-    background: rgba(1, 64, 152, 0.42);
+    background:linear-gradient(
+      90deg,
+      rgba(1, 64, 152, 0.42) 16.500000655651093%,
+      rgba(196, 219, 251, 0.42) 63.499999046325684%
+    );
     padding: 10px 160px 10px 160px;
     display: flex;
     flex-direction: row;
@@ -63,7 +67,11 @@
     object-fit: cover;
   }
   .page-tail {
-    background:rgba(1, 64, 152, 0.42);
+    background:linear-gradient(
+      90deg,
+      rgba(1, 64, 152, 0.42) 16.500000655651093%,
+      rgba(196, 219, 251, 0.42) 63.499999046325684%
+    );
     padding: 10px 160px 10px 160px;
     display: flex;
     flex-direction: row;
@@ -74,7 +82,7 @@
     position: absolute;
     right: 0px;
     left: 0px;
-    bottom: -52px;
+    bottom: -32px;
     backdrop-filter: blur(15px);
   }
   .group-12 {
@@ -95,7 +103,7 @@
     bottom: 70px;
   }
   .frame-3 {
-    height: 720px;
+    height: 600px;
     position: absolute;
     right: 0px;
     left: 0px;

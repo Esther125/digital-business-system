@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>BOM List Page</title>
-    <link rel="stylesheet" href="CSS/omPageStyle.css">
+    <link rel="stylesheet" href="CSS/bomListPage.css">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <div class="o-mpage">
+    <div class="bomListPage">
         <div class="page-head">
             <div class="group-1">
               <div class="quanta-computer">
@@ -36,7 +36,27 @@
               </span>
             </div>
             <div class="line-1"></div>
+            <div class="ai2">
+              <span>
+                <span class="ai-2-span">
+                  <table class="bom-table">
+                    <thead>
+                        <tr>
+                            <th>產品名稱</th>
+                            <th>所需零件</th>
+                            <th>所需數量</th>
+                            <th>下期預期需求</th>
+                            <th>組裝前置時間</th>
+                        </tr>
+                    </thead>
+                    <tbody id="output">
+                        
+                    </tbody>
+                  </table>
+                </span>
+              </span>
+            </div>
           </div>
-      
+          <script src="js/bomListPage.js"></script>
 </body>
 </html>

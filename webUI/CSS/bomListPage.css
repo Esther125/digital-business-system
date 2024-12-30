@@ -1,8 +1,8 @@
-.rfm-page,
-.rfm-page * {
+.bomListPage,
+.bomListPage * {
   box-sizing: border-box;
 }
-.rfm-page {
+.bomListPage{
   background: #f1f9ff;
   height: 800px;
   position: relative;
@@ -89,7 +89,7 @@
     font-weight: 400;
   }
 
-.customer-table {
+  .bom-table {
     width: 100%;
     top: 2px;
     position: absolute;
@@ -99,26 +99,26 @@
     text-align: left;
 }
 
-.customer-table th, 
-.customer-table td {
+.bom-table th, 
+.bom-table td {
     padding: 12px;
     border: 1px solid #ddd;
 }
 
-.customer-table th {
+.bom-table th {
     background-color: #f4f4f4;
     font-weight: bold;
 }
 
-.customer-table tbody tr:nth-child(even) {
+.bom-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.customer-table tbody tr:hover {
+.bom-table tbody tr:hover {
     background-color: #f1f1f1;
 }
 
-.customer-table .button {
+.bom-table .button {
     padding: 5px 10px;
     background-color: #007bff;
     color: white;
@@ -128,6 +128,6 @@
     display: inline-block;
 }
 
-.customer-table .button:hover {
+.bom-table .button:hover {
     background-color: #0056b3;
 }

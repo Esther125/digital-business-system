@@ -1,0 +1,40 @@
+function fetchComponentData(){
+    //在這裡抓資料
+
+    //先放假資料
+    var componentLevels=[
+        {
+            "id":"Component#1",
+            "times": ['第一期', '第二期', '第三期', '第四期', '第五期', '第六期', '第七期', '第八期', '第九期'],
+            "inventoryLevel":[1, 10, 15, 25, 5, 15, 10, 5, 1]//這個要想一下怎麼撈往期的資料
+        },
+        {
+            "id":"Component#2",
+            "times": ['第一期', '第二期', '第三期', '第四期', '第五期', '第六期', '第七期', '第八期', '第九期'],
+            "inventoryLevel":[10, 20, 15, 10, 5, 25, 15, 5, 10]
+        }
+    ];
+   showOnTable(componentLevels);
+}
+
+function showOnTable(componentLevels){
+    const charts = document.getElementById('charts');
+    componentLevels.forEach(componentLevel=>{
+        const chartElement=document.createElement('canvas');
+        const newChart= new Chart(chartElement, {
+            type: 'bar',
+            data: {
+                labels:componentLevel.times,
+                datasets: [{
+                    label: componentLevel.id,
+                    data:componentLevel.inventoryLevel ,
+                }]
+            }
+        })
+        charts.appendChild(chartElement);
+        
+    });
+    console.log("push");
+}
+// 瀏覽器載入時呼叫
+document.addEventListener('DOMContentLoaded', fetchComponentData);

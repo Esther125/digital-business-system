@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>Product Inventory Page</title>
-    <link rel="stylesheet" href="CSS/omPageStyle.css">
+    <link rel="stylesheet" href="CSS/productInventoryPage.css">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <div class="o-mpage">
+    <div class="productInventoryPage">
         <div class="page-head">
             <div class="group-1">
               <div class="quanta-computer">
@@ -30,13 +30,20 @@
                 <span class="ai-span2">
                   <br />
                 </span>
-                <span class="ai-span3">
+                <span class="ai-span3" >
                   專為廣達電腦設計的一站式資訊管理系統，針對洶湧而來的筆記型電腦與客製化AI伺服器組裝訂單提出輕量化的解方！
                 </span>
               </span>
             </div>
-            <div class="line-1"></div>
+            <div class="line-1" ></div>
+            <span>
+              <span class="ai2"  id="charts" >
+                <canvas class="ai-2-span" ></canvas>
+              </span>
+            </span>
           </div>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <script src="js/productInventoryPage.js"></script>
       
 </body>
 </html>

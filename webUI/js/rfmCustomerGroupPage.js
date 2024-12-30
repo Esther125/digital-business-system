@@ -1,49 +1,34 @@
-var AWS = require("aws-sdk");
+function fetchCustomerData(){
+   //在這裡抓資料
 
-AWS.config.update({
-    region: "ap-northeast-1"
-});
-
-var docClient = new AWS.DynamoDB.DocumentClient();
-
-var table = "sysdata";
-
-var params = {
-    TableName: table,
-    Key:{
-        "accountType": "customer"
-    }
-};
-
-var result="";
-
-docClient.get(params, function(err, data) {
-    if (err) {
-    result="Unable to read item. Error JSON:"+ JSON.stringify(err, null, 2);
-    } else {
-    result="GetItem succeeded:"+ data;  
-    }
-});
-
-function output(){
-    var newRow=document.createElement('tr');
-    var tdU=document.createElement('td');
-    var tdR=document.createElement('td');
-    var tdF=document.createElement('td');
-    var tdM=document.createElement('td');
-    var tdRFM=document.createElement('td');
-
-    tdU.textContent=result;
-    tdR.textContent="20240930";
-    tdF.textContent="0";
-    tdM.textContent="0";
-    tdRFM.textContent="455";
-
-    newRow.appendChild(tdU);
-    newRow.appendChild(tdR);
-    newRow.appendChild(tdF);
-    newRow.appendChild(tdM);
-    newRow.appendChild(tdRFM);
-
-    document.getElementById('output').appendChild(newRow);
+   //先放假資料
+   var customers=[
+        {
+            "userId":"User#5",
+            "recency":"0",
+            "frequency":"0",
+            "monetaryValue":"0",
+            "rfmGroup":"0"
+        }
+    ];
+    showOnTable(customers);
 }
+
+function showOnTable(customers){
+    const tbody=document.getElementById('output');
+    tbody.innerHTML="";
+    console.log("clean");
+    customers.forEach(customer => {
+        const newRow =document.createElement('tr');    
+        newRow.innerHTML=`
+            <td>${customer.userId}</td>
+            <td>${customer.recency}</td>
+            <td>${customer.frequency}</td>
+            <td>${customer.monetaryValue}</td>
+            <td>${customer.rfmGroup}</td>`;
+            tbody.appendChild(newRow);
+    });
+    console.log("push");
+}
+// 瀏覽器載入時呼叫
+document.addEventListener('DOMContentLoaded', fetchCustomerData);
