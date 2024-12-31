@@ -1,0 +1,133 @@
+.orderListPage,
+.orderListPage * {
+  box-sizing: border-box;
+}
+.orderListPage {
+  background: #f1f9ff;
+  height: 800px;
+  position: relative;
+  overflow: hidden;
+}
+.div {
+  color: #000000;
+  text-align: center;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: absolute;
+  right: 115.07px;
+  left: 115.06866455078125px;
+  top: 110px;
+  height: 30px;
+}
+.div2 {
+    color: #000000;
+    text-align: center;
+    font-family: "Kanit-Regular", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    right: 115.07px;
+    left: 115.06867218017578px;
+    top: 272px;
+    height: 30px;
+  }
+.ai {
+  color: #000000;
+  text-align: left;
+  position: absolute;
+  right: 32px;
+  left: 33px;
+  top: 16px;
+  height: 69px;
+}
+.ai-span {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+.ai-span2 {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+}
+.ai-span3 {
+  color: #000000;
+  font-family: "Kanit-Regular", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+.line-1 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  height: 0px;
+  position: absolute;
+  right: 20px;
+  left: 21px;
+  top: 109px;
+  transform-origin: 0 0;
+  transform: rotate(-0.163deg) scale(1, 1);
+}
+
+.ai2 {
+    color: #000000;
+    text-align: left;
+    position: absolute;
+    right: 32px;
+    left: 33px;
+    top: 110px;
+    height: 69px;
+  }
+  .ai-2-span {
+    color: #000000;
+    font-family: "Kanit-Regular", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+.customer-table {
+    width: 100%;
+    top: 2px;
+    position: absolute;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.customer-table th, 
+.customer-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.customer-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.customer-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.customer-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.customer-table .button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    display: inline-block;
+}
+
+.customer-table .button:hover {
+    background-color: #0056b3;
+}

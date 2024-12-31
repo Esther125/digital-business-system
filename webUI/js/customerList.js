@@ -5,10 +5,9 @@ function fetchCustomerData(){
    var customers=[
         {
             "userId":"User#5",
-            "recency":"2023-11-01 00:00",
-            "frequency":"0",
-            "monetaryValue":"0",
-            "rfmGroup":"000"
+            "rfmGroup":"000",
+            "orderstatus":"finished",//最近一張訂單的status
+            "Email":"user5@gmail.com"
         }
     ];
     showOnTable(customers);
@@ -19,13 +18,14 @@ function showOnTable(customers){
     tbody.innerHTML="";
     console.log("clean");
     customers.forEach(customer => {
-        const newRow =document.createElement('tr');    
+        const newRow =document.createElement('tr');
+        //button那行希望是帶去 orderListPage裡目前這位使用者的訂單的位置   
         newRow.innerHTML=`
             <td>${customer.userId}</td>
-            <td>${customer.recency}</td>
-            <td>${customer.frequency}</td>
-            <td>${customer.monetaryValue}</td>
-            <td>${customer.rfmGroup}</td>`;
+            <td>${customer.rfmGroup}</td>
+            <td>${customer.orderstatus}</td>
+            <td><a href="orderListPage.html"><button value=${customer.userId}>前往</button></a></td>
+            <td>${customer.Email}</td>`;
             tbody.appendChild(newRow);
     });
     console.log("push");

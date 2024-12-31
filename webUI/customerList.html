@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>Customer List Page</title>
-    <link rel="stylesheet" href="CSS/crmPageStyle.css">
+    <link rel="stylesheet" href="CSS/customerList.css">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <div class="cr-mpage">
+    <div class="customerList">
         <div class="page-head">
             <div class="group-1">
               <div class="quanta-computer">
@@ -35,10 +35,28 @@
                 </span>
               </span>
             </div>
-            
             <div class="line-1"></div>
+            <div class="ai2">
+              <span>
+                <span class="ai-2-span">
+                  <table class="customer-table">
+                    <thead>
+                        <tr>
+                            <th>顧客編號</th>
+                            <th>RFM等級</th>
+                            <th>最新訂單狀態</th>
+                            <th>前往訂單列表</th>
+                            <th>聯絡方式</th>
+                        </tr>
+                    </thead>
+                    <tbody id="output">
+                    </tbody>
+                  </table>
+                </span>
+              </span>
+            </div>
           </div>
       </div>
-      
+      <script src="js/customerList.js"></script>
 </body>
 </html>
