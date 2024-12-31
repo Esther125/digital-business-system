@@ -3,27 +3,28 @@
 <head>
     <title>Log In Page</title>
     <link rel="stylesheet" href="CSS/logInStyle,.css">
+    <link rel="stylesheet" href="CSS/sideBar.css">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
     <div class="log-in-page">
-      <div class="page-head">
+      <div class="page-head" id="page-head">
         <div class="group-1">
           <div class="quanta-computer">
             Quanta Computer
             <br />
           </div>
-          <a href="MainPage.html"><img class="logo" src="Assets/logo0.png" /></a>
+          <img class="logo" src="Assets/logo0.png" />
         </div>
-        <img class="index" src="Assets/index0.png" />
+        <img class="index" src="Assets/index0.png" id="openSidebarButton"/>
         <a href="LogInPage.html"><img class="user" src="Assets/user0.png" /></a>
       </div>
-      <div class="page-tail">
+      <div class="page-tail" id="page-tail">
         <div class="group-12">
           <div class="group-13">Group 1</div>
         </div>
       </div>
-      <div class="form-log-in">
+      <div class="form-log-in" id="frame-3">
         <div class="email">
           <div class="label">電子郵件</div>
           <div class="input">
@@ -37,13 +38,45 @@
           </div>
         </div>
         <div class="log-in">
-          <button type="button" onclick="getData()">登入</button>
+          <div class="button" onclick="getData()">登入</div>
         </div>
         <div class="toSignUp">
           <a href="SignUpPage.html"><div class="text-link">註冊新帳號</div></a>
         </div>
         <div  id="ootput"></div>
+        <aside class="aside" id="aside">
+          <button id="closeSidebarButton">X</button>
+
+          <li>
+            <span class="title" >使用者</span>
+            <ul >
+              <a href="LogInPage.html"><p>登入</p></a>
+              <a href="SignUpPage.html"><p>註冊</p></a>
+            </ul>
+          </li>
+
+          <li>
+            <span class="title" >顧客關係管理</span>
+            <ul >
+              <a href="CRMpage.html"><p>總覽</p></a>
+              <a href="rfmCustomerGroupPage.html"><p>優先顧客推薦</p></a>
+              <a href="customerList.html"><p>顧客列表</p></a>
+              <a href="orderListPage.html"><p>訂單列表</p></a>
+            </ul>
+          </li>
+
+          <li>
+            <span class="title" >存貨管理</span>
+            <ul >
+              <a href="OMpage.html"><p>總覽</p></a>
+              <a href="productInventoryPage.html"><p>產品存貨</p></a>
+              <a href="componentInventoryPage.html"><p>零件存貨</p></a>
+              <a href="bomListPage.html"><p>BOM表</p></a>
+            </ul>
+          </li>
+        </aside>
     </div>
-    <script src="js/LogInPage.js"></script>
+      <script src="js/sidebar.js"></script>
+      <script src="js/LogInPage.js"></script>
 </body>
 </html>

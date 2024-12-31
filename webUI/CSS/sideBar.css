@@ -1,0 +1,54 @@
+.aside {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: all 0.5s ease-in-out;
+    background-color: rgba(122, 155, 200, 0.42);
+    overflow-y: auto;
+  }
+aside #closeSidebarButton {
+    position: relative;
+    top: 4%;
+    left: 80%;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+  }
+.aside-left {
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: all 0.5s ease-in-out;
+  overflow-y: auto;
+  }
+  p {
+    color: #000000;
+    text-align: center;
+    font-family: "Kanit-Regular", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+
+    position: relative;
+    left: 30px;
+
+    width:200px;
+
+    background: #fffcdf;
+    border-radius: 40px;
+    border-style: solid;
+    border-color: #014194;
+    border-width: 1px;
+  }
+
+  .title{
+    color: #000000;
+    font-family: "Kanit-Regular", sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+  }
