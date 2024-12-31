@@ -4,7 +4,21 @@ function fetchBomData(){
     //先放假資料
     var boms=[
         {
-            "productId":"LaptopA",
+            "productId":"LaptopA",//呈現的時候 Group by productId
+            "componentId":"",
+            "componentAmount":"",
+            "forcastDemand":"0",//產品的，用算的
+            "leadTime":"0"//產品的
+        },
+        {
+            "productId":"",
+            "componentId":"Component#1",
+            "componentAmount":"2",
+            "forcastDemand":"0",//零件的，用算的
+            "leadTime":"0"//零件的，資料庫設計的時候漏了要補，零件存貨會用到
+        },
+        {
+            "productId":"LaptopA",//呈現的時候 Group by productId
             "componentId":"",
             "componentAmount":"",
             "forcastDemand":"0",//產品的，用算的

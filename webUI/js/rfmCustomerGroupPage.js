@@ -9,6 +9,10 @@ function fetchCustomerData(){
             "frequency":"0",
             "monetaryValue":"0",
             "rfmGroup":"000"
+            //呈現的時候sort by rfmGroup, [111,112,...,121,....,211,...,555]
+            //其中1是最近期/最頻繁/花最多錢的
+            //依據r=1~5分五組分配不同的稱號[“最優先”,"次優先","一般","次延後","最延後"]
+            //時間夠的話會回來為各組加不同的表格底色
         }
     ];
     showOnTable(customers);

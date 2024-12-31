@@ -4,10 +4,10 @@ function fetchCustomerData(){
    //先放假資料
    var orders=[
         {
-            "userId":"User#5",
+            "userId":"User#5",//呈現的時候同使用者的放一起, Group by userId
             "id":"Order#18",
             "status":"confirmed",
-            "DDL":"2023-11-01 00:00",//處理過的 2023-11-01T22:00:00Z
+            "DDL":"2023-11-01 00:00",//處理過的 2023-11-01T22:00:00Z,呈現的時候以DDL近到遠排序
             "productInfo":[["LaptopC","1"],["LaptopB","2"]],
             "orderProfit":"300" //加總整單的產品售價-成本
         }
