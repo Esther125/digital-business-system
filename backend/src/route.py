@@ -2,11 +2,11 @@ from datetime import timedelta
 import os
 import aiofiles
 from typing import Annotated
-from src.service import authenticate_user, create_access_token, get_current_active_user
+from src.service import authenticate_user, check_user_access, create_access_token
 from fastapi import Depends, HTTPException, APIRouter, status
 from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
-from src.model import Token, User
+from src.model import Token
 
 
 fake_users_db = {
@@ -43,11 +43,11 @@ async def login_for_access_token(
     return Token(access_token=access_token, token_type="bearer")
 
 
-@router.get("/users/me")
-async def read_users_me(
-    current_user: Annotated[User, Depends(get_current_active_user)],
-):
-    return current_user
+# @router.get("/users/me")
+# async def read_users_me(
+#     current_user: Annotated[User, Depends(get_current_active_user)],
+# ):
+#     return current_user
 
 
 @router.get("/mainPage", response_class=HTMLResponse)
@@ -58,7 +58,30 @@ async def main():
 
 
 @router.get("/orderListPage", response_class=HTMLResponse)
-async def orderListPage():
+async def orderListPage(
+    access: bool = Depends(lambda: check_user_access(page="/orderListPage")),
+):
     async with aiofiles.open("../webUI/orderListPage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/CRMpage", response_class=HTMLResponse)
+async def CRMpage():
+    async with aiofiles.open("../webUI/CRMpage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/OMpage", response_class=HTMLResponse)
+async def OMpage():
+    async with aiofiles.open("../webUI/OMpage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/LogInPage", response_class=HTMLResponse)
+async def LogInPage():
+    async with aiofiles.open("../webUI/LogInPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)

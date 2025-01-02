@@ -12,6 +12,19 @@ from typing import Optional
 
 load_dotenv()
 
+ROLE_PERMISSIONS = {
+    "manager": ["*"],  # 所有頁面
+    "headquarter": ["*"],
+    "customer": ["/orderListPage"],
+    "factory": [
+        "/OMpage",
+        "/bomListPage",
+        "/componentInventoryPage",
+        "/productInventoryPage",
+    ],
+    "supplier": ["/OMpage"],
+}
+
 fake_users_db = {
     "johndoe@example.com": {
         "username": "johndoe@example.com",
@@ -86,9 +99,9 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     return user
 
 
-async def get_current_active_user(
-    current_user: Annotated[User, Depends(get_current_user)],
-):
-    if current_user.disabled:
-        raise HTTPException(status_code=400, detail="Inactive user")
-    return current_user
+def check_user_access(user: User = Depends(get_current_user), page: str = ""):
+    allowed_pages = ROLE_PERMISSIONS.get(user.accountType, [])
+    if "*" in allowed_pages or page in allowed_pages:
+        return True
+    else:
+        raise HTTPException(status_code=403, detail="Access denied")
