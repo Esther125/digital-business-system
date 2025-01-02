@@ -3,4 +3,6 @@ repos:
       rev: "v0.5.5"
       hooks:
           - id: ruff
+            types: [python]
           - id: ruff-format
+            types: [python]

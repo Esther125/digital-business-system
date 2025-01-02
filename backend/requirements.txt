@@ -1,0 +1,7 @@
+fastapi[standard]
+uvicorn
+pyjwt
+passlib
+python-dotenv
+bcrypt
+pre-commit
