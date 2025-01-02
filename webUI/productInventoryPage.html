@@ -1,84 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Product Inventory Page</title>
-    <link rel="stylesheet" href="CSS/productInventoryPage.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/sideBar.css">
-</head>
-<body>
-    <div class="productInventoryPage">
-      <div class="page-head" id="page-head">
-        <div class="group-1">
-          <div class="quanta-computer">
-            Quanta Computer
-            <br />
-          </div>
-          <img class="logo" src="Assets/logo0.png" />
-        </div>
-        <img class="index" src="Assets/index0.png" id="openSidebarButton"/>
-        <a href="LogInPage.html"><img class="user" src="Assets/user0.png" /></a>
-      </div>
-      <div class="page-tail" id="page-tail">
-        <div class="group-12">
-          <div class="group-13">Group 1</div>
-        </div>
-      </div>
-        <div class="frame-3" id="frame-3">
-            <div class="ai">
-              <span>
-                <span class="ai-span">產品存貨</span>
-                <span class="ai-span2">
-                  <br />
-                </span>
-                <span class="ai-span3" >
-                  專為廣達電腦設計的一站式資訊管理系統，針對洶湧而來的筆記型電腦與客製化AI伺服器組裝訂單提出輕量化的解方！
-                </span>
-              </span>
+    <head>
+        <title>Product Inventory Page</title>
+        <link rel="stylesheet" href="../webUI/CSS/productInventoryPage.css" />
+        <link rel="stylesheet" href="../webUI/CSS/style.css" />
+        <link rel="stylesheet" href="../webUI/CSS/sideBar.css" />
+    </head>
+    <body>
+        <div class="productInventoryPage">
+            <div class="page-head" id="page-head">
+                <div class="group-1">
+                    <div class="quanta-computer">
+                        Quanta Computer
+                        <br />
+                    </div>
+                    <img class="logo" src="../webUI/Assets/logo0.png" />
+                </div>
+                <img
+                    class="index"
+                    src="../webUI/Assets/index0.png"
+                    id="openSidebarButton"
+                />
+                <a href="/LogInPage"
+                    ><img class="user" src="../webUI/Assets/user0.png"
+                /></a>
             </div>
-            <div class="line-1" ></div>
-            <span>
-              <span class="ai2"  id="charts" >
-                <canvas class="ai-2-span" ></canvas>
-              </span>
-            </span>
-          </div>
-          <aside class="aside" id="aside">
-            <button id="closeSidebarButton">X</button>
-  
-            <li>
-              <span class="title" >使用者</span>
-              <ul >
-                <a href="LogInPage.html"><p>登入</p></a>
-                <a href="SignUpPage.html"><p>註冊</p></a>
-              </ul>
-            </li>
-  
-            <li>
-              <span class="title" >顧客關係管理</span>
-              <ul >
-                <a href="CRMpage.html"><p>總覽</p></a>
-                <a href="rfmCustomerGroupPage.html"><p>優先顧客推薦</p></a>
-                <a href="customerList.html"><p>顧客列表</p></a>
-                <a href="orderListPage.html"><p>訂單列表</p></a>
-              </ul>
-            </li>
-  
-            <li>
-              <span class="title" >存貨管理</span>
-              <ul >
-                <a href="OMpage.html"><p>總覽</p></a>
-                <a href="productInventoryPage.html"><p>產品存貨</p></a>
-                <a href="componentInventoryPage.html"><p>零件存貨</p></a>
-                <a href="bomListPage.html"><p>BOM表</p></a>
-              </ul>
-            </li>
-          </aside>
-     </div>     
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script src="js/productInventoryPage.js"></script>
-      <script src="js/sidebar.js"></script>
+            <div class="page-tail" id="page-tail">
+                <div class="group-12">
+                    <div class="group-13">Group 1</div>
+                </div>
+            </div>
+            <div class="frame-3" id="frame-3">
+                <div class="ai">
+                    <span>
+                        <span class="ai-span">產品存貨</span>
+                        <span class="ai-span2">
+                            <br />
+                        </span>
+                        <span class="ai-span3">
+                            專為廣達電腦設計的一站式資訊管理系統，針對洶湧而來的筆記型電腦與客製化AI伺服器組裝訂單提出輕量化的解方！
+                        </span>
+                    </span>
+                </div>
+                <div class="line-1"></div>
+                <span>
+                    <span class="ai2" id="charts">
+                        <canvas class="ai-2-span"></canvas>
+                    </span>
+                </span>
+            </div>
+            <aside class="aside" id="aside">
+                <button id="closeSidebarButton">X</button>
 
-      
-</body>
+                <li>
+                    <span class="title">使用者</span>
+                    <ul>
+                        <a href="/LogInPage"><p>登入</p></a>
+                        <a href="/SignUpPage"><p>註冊</p></a>
+                    </ul>
+                </li>
+
+                <li>
+                    <span class="title">顧客關係管理</span>
+                    <ul>
+                        <a href="/CRMpage"><p>總覽</p></a>
+                        <a href="/rfmCustomerGroupPage"><p>優先顧客推薦</p></a>
+                        <a href="/customerList"><p>顧客列表</p></a>
+                        <a href="/orderListPage"><p>訂單列表</p></a>
+                    </ul>
+                </li>
+
+                <li>
+                    <span class="title">存貨管理</span>
+                    <ul>
+                        <a href="/OMpage"><p>總覽</p></a>
+                        <a href="/productInventoryPage"><p>產品存貨</p></a>
+                        <a href="/componentInventoryPage"><p>零件存貨</p></a>
+                        <a href="/bomListPage"><p>BOM表</p></a>
+                    </ul>
+                </li>
+            </aside>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../webUI/js/productInventoryPage.js"></script>
+        <script src="../webUI/js/sidebar.js"></script>
+    </body>
 </html>
