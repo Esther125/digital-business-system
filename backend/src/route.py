@@ -85,3 +85,10 @@ async def LogInPage():
     async with aiofiles.open("../webUI/LogInPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
+
+
+@router.get("/SignUpPage", response_class=HTMLResponse)
+async def SignUpPage():
+    async with aiofiles.open("../webUI/SignUpPage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
