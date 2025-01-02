@@ -1,7 +1,18 @@
+var baseUrl = "http://127.0.0.1:8000"; // 部署時需修改
+
+// session 中有 token 則保持登入狀態
+document.addEventListener("DOMContentLoaded", function () {
+    const token = sessionStorage.getItem("token");
+
+    if (token) {
+        window.location.href = `${baseUrl}/mainPage`;
+    }
+});
+
+// 登入
 async function getData() {
     const emailAddress = document.getElementById("email-address").value;
     const password = document.getElementById("password").value;
-    const baseUrl = "http://127.0.0.1:8000"; // 部署的時候要改
 
     try {
         const response = await fetch(`${baseUrl}/token`, {
