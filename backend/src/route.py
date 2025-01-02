@@ -2,7 +2,7 @@ from datetime import timedelta
 import os
 import aiofiles
 from typing import Annotated
-from src.service import authenticate_user, check_user_access, create_access_token
+from src.service import authenticate_user, create_access_token
 from fastapi import Depends, HTTPException, APIRouter, status
 from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
@@ -58,9 +58,7 @@ async def main():
 
 
 @router.get("/orderListPage", response_class=HTMLResponse)
-async def orderListPage(
-    access: bool = Depends(lambda: check_user_access(page="/orderListPage")),
-):
+async def orderListPage():
     async with aiofiles.open("../webUI/orderListPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -90,5 +88,40 @@ async def LogInPage():
 @router.get("/SignUpPage", response_class=HTMLResponse)
 async def SignUpPage():
     async with aiofiles.open("../webUI/SignUpPage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/bomListPage", response_class=HTMLResponse)
+async def bomListPage():
+    async with aiofiles.open("../webUI/bomListPage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/componentInventoryPage", response_class=HTMLResponse)
+async def componentInventoryPage():
+    async with aiofiles.open("../webUI/componentInventoryPage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/customerList", response_class=HTMLResponse)
+async def customerList():
+    async with aiofiles.open("../webUI/customerList.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/productInventoryPage", response_class=HTMLResponse)
+async def productInventoryPage():
+    async with aiofiles.open("../webUI/productInventoryPage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/rfmCustomerGroupPage", response_class=HTMLResponse)
+async def rfmCustomerGroupPage():
+    async with aiofiles.open("../webUI/rfmCustomerGroupPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
