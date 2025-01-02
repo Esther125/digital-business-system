@@ -19,8 +19,8 @@ source myenv/bin/activate
 ```shell
 # Install dependencies
 pip install -r requirements.txt
-
-uvicorn src.main:app --reload
+cd backend
+uvicorn main:app --reload
 ```
 
 ### Setup pre-commit
