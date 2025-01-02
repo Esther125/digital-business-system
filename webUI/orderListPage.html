@@ -1,96 +1,109 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Order List Page</title>
-    <link rel="stylesheet" href="CSS/orderListPage.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/sideBar.css">
-</head>
-<body>
-    <div class="orderListPage">
-      <div class="page-head" id="page-head">
-        <div class="group-1">
-          <div class="quanta-computer">
-            Quanta Computer
-            <br />
-          </div>
-          <img class="logo" src="Assets/logo0.png" />
-        </div>
-        <img class="index" src="Assets/index0.png" id="openSidebarButton"/>
-        <a href="LogInPage.html"><img class="user" src="Assets/user0.png" /></a>
-      </div>
-      <div class="page-tail" id="page-tail">
-        <div class="group-12">
-          <div class="group-13">Group 1</div>
-        </div>
-      </div>
-      <div class="frame-3" id="frame-3">
-            <div class="ai">
-              <span>
-                <span class="ai-span">訂單列表</span>
-                <span class="ai-span2">
-                  <br />
-                </span>
-                <span class="ai-span3">
-                  專為廣達電腦設計的一站式資訊管理系統，針對洶湧而來的筆記型電腦與客製化AI伺服器組裝訂單提出輕量化的解方！
-                </span>
-              </span>
-            </div>   
-            <div class="line-1"></div>
-            <div class="ai2">
-              <span>
-                <span class="ai-2-span">
-                  <table class="customer-table">
-                    <thead>
-                        <tr>
-                            <th>顧客編號</th>
-                            <th>訂單編號</th>
-                            <th>訂單狀態</th>
-                            <th>訂單截止時間</th>
-                            <th>預期收益</th>
-                            <th>訂單內容</th>
-                        </tr>
-                    </thead>
-                    <tbody id="output">
-                    </tbody>
-                  </table>
-                </span>
-              </span>
+    <head>
+        <title>Order List Page</title>
+        <link rel="stylesheet" href="../webUI/CSS/orderListPage.css" />
+        <link rel="stylesheet" href="../webUI/CSS/style.css" />
+        <link rel="stylesheet" href="../webUI/CSS/sideBar.css" />
+    </head>
+    <body>
+        <div class="orderListPage">
+            <div class="page-head" id="page-head">
+                <div class="group-1">
+                    <div class="quanta-computer">
+                        Quanta Computer
+                        <br />
+                    </div>
+                    <img class="logo" src="../webUI/Assets/logo0.png" />
+                </div>
+                <img
+                    class="index"
+                    src="../webUI/Assets/index0.png"
+                    id="openSidebarButton"
+                />
+                <a href="../webUI/LogInPage.html"
+                    ><img class="user" src="../webUI/Assets/user0.png"
+                /></a>
             </div>
-          </div>
-          <aside class="aside" id="aside">
-            <button id="closeSidebarButton">X</button>
-  
-            <li>
-              <span class="title" >使用者</span>
-              <ul >
-                <a href="LogInPage.html"><p>登入</p></a>
-                <a href="SignUpPage.html"><p>註冊</p></a>
-              </ul>
-            </li>
-  
-            <li>
-              <span class="title" >顧客關係管理</span>
-              <ul >
-                <a href="CRMpage.html"><p>總覽</p></a>
-                <a href="rfmCustomerGroupPage.html"><p>優先顧客推薦</p></a>
-                <a href="customerList.html"><p>顧客列表</p></a>
-                <a href="orderListPage.html"><p>訂單列表</p></a>
-              </ul>
-            </li>
-  
-            <li>
-              <span class="title" >存貨管理</span>
-              <ul >
-                <a href="OMpage.html"><p>總覽</p></a>
-                <a href="productInventoryPage.html"><p>產品存貨</p></a>
-                <a href="componentInventoryPage.html"><p>零件存貨</p></a>
-                <a href="bomListPage.html"><p>BOM表</p></a>
-              </ul>
-            </li>
-          </aside>
-      </div>
-      <script src="js/orderListPage.js"></script>
-      <script src="js/sidebar.js"></script>
-</body>
+            <div class="page-tail" id="page-tail">
+                <div class="group-12">
+                    <div class="group-13">Group 1</div>
+                </div>
+            </div>
+            <div class="frame-3" id="frame-3">
+                <div class="ai">
+                    <span>
+                        <span class="ai-span">訂單列表</span>
+                        <span class="ai-span2">
+                            <br />
+                        </span>
+                        <span class="ai-span3">
+                            專為廣達電腦設計的一站式資訊管理系統，針對洶湧而來的筆記型電腦與客製化AI伺服器組裝訂單提出輕量化的解方！
+                        </span>
+                    </span>
+                </div>
+                <div class="line-1"></div>
+                <div class="ai2">
+                    <span>
+                        <span class="ai-2-span">
+                            <table class="customer-table">
+                                <thead>
+                                    <tr>
+                                        <th>顧客編號</th>
+                                        <th>訂單編號</th>
+                                        <th>訂單狀態</th>
+                                        <th>訂單截止時間</th>
+                                        <th>預期收益</th>
+                                        <th>訂單內容</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="output"></tbody>
+                            </table>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <aside class="aside" id="aside">
+                <button id="closeSidebarButton">X</button>
+
+                <li>
+                    <span class="title">使用者</span>
+                    <ul>
+                        <a href="../webUI/LogInPage.html"><p>登入</p></a>
+                        <a href="../webUI/SignUpPage.html"><p>註冊</p></a>
+                    </ul>
+                </li>
+
+                <li>
+                    <span class="title">顧客關係管理</span>
+                    <ul>
+                        <a href="../webUI/CRMpage.html"><p>總覽</p></a>
+                        <a href="../webUI/rfmCustomerGroupPage.html"
+                            ><p>優先顧客推薦</p></a
+                        >
+                        <a href="../webUI/customerList.html"><p>顧客列表</p></a>
+                        <a href="../webUI/orderListPage.html"
+                            ><p>訂單列表</p></a
+                        >
+                    </ul>
+                </li>
+
+                <li>
+                    <span class="title">存貨管理</span>
+                    <ul>
+                        <a href="../webUI/OMpage.html"><p>總覽</p></a>
+                        <a href="../webUI/productInventoryPage.html"
+                            ><p>產品存貨</p></a
+                        >
+                        <a href="../webUI/componentInventoryPage.html"
+                            ><p>零件存貨</p></a
+                        >
+                        <a href="../webUI/bomListPage.html"><p>BOM表</p></a>
+                    </ul>
+                </li>
+            </aside>
+        </div>
+        <script src="../webUI/js/orderListPage.js"></script>
+        <script src="../webUI/js/sidebar.js"></script>
+    </body>
 </html>

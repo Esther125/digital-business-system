@@ -4,6 +4,7 @@ from typing import Optional
 
 class User(BaseModel):
     username: str
+    accountType: str
     email: Optional[str]
     full_name: Optional[str]
     disabled: Optional[bool]

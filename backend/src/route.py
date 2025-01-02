@@ -12,6 +12,7 @@ from src.model import Token, User
 fake_users_db = {
     "johndoe@example.com": {
         "username": "johndoe@example.com",
+        "accountType": "customer",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
         "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
@@ -52,5 +53,12 @@ async def read_users_me(
 @router.get("/mainPage", response_class=HTMLResponse)
 async def main():
     async with aiofiles.open("../webUI/MainPage.html", mode="r") as f:
+        html_content = await f.read()
+    return HTMLResponse(content=html_content)
+
+
+@router.get("/orderListPage", response_class=HTMLResponse)
+async def orderListPage():
+    async with aiofiles.open("../webUI/orderListPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
