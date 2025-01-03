@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import boto3
-from boto3.dynamodb.conditions import Attr
+import boto3 # type: ignore
 from dotenv import load_dotenv
 import os
 
