@@ -1,14 +1,63 @@
 from datetime import timedelta
 from typing import Annotated
-from src.service import authenticate_user, check_user_access, create_access_token
+from src.service import (
+    authenticate_user,
+    check_user_access,
+    create_access_token,
+    get_password_hash,
+)
 from fastapi import Depends, HTTPException, APIRouter, status
 from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
-from src.model import Token
+from src.model import SignUpRequest, Token
 import aiofiles
 import os
 
 CURRENT_USER = None
+
+
+fake_users_db = {
+    "customer@example.com": {
+        "username": "customer@example.com",
+        "accountType": "customer",
+        "full_name": "John Doe",
+        "email": "customer@example.com",
+        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "disabled": False,
+    },
+    "factory@example.com": {
+        "username": "factory@example.com",
+        "accountType": "factory",
+        "full_name": "John Doe",
+        "email": "factory@example.com",
+        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "disabled": False,
+    },
+    "manager@example.com": {
+        "username": "manager@example.com",
+        "accountType": "manager",
+        "full_name": "John Doe",
+        "email": "manager@example.com",
+        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "disabled": False,
+    },
+    "supplier@example.com": {
+        "username": "supplier@example.com",
+        "accountType": "supplier",
+        "full_name": "John Doe",
+        "email": "supplier@example.com",
+        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "disabled": False,
+    },
+    "headquarter@example.com": {
+        "username": "headquarter@example.com",
+        "accountType": "headquarter",
+        "full_name": "John Doe",
+        "email": "headquarter@example.com",
+        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "disabled": False,
+    },
+}
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
 
@@ -148,3 +197,23 @@ async def rfmCustomerGroupPage():
     async with aiofiles.open("../webUI/rfmCustomerGroupPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
+
+
+@router.post("/signup")
+def sign_up(user: SignUpRequest):
+    # 檢查密碼是否一致
+    if user.setPassword != user.checkPassword:
+        raise HTTPException(status_code=400, detail="Passwords do not match")
+
+    # 添加新用戶到 fake_users_db
+    hashed_password = get_password_hash(user.setPassword)
+    fake_users_db[user.emailAddress] = {
+        "username": user.emailAddress,
+        "accountType": "customer",  # 默認賬戶類型
+        "full_name": "New User",  # 可根據需求自定義
+        "email": user.emailAddress,
+        "hashed_password": hashed_password,
+        "disabled": False,
+    }
+
+    return {"message": "Sign up successful", "email": user.emailAddress}
