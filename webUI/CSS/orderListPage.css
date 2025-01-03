@@ -102,7 +102,7 @@
 .customer-table th, 
 .customer-table td {
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid #8e8e8e;
 }
 
 .customer-table th {
@@ -110,14 +110,29 @@
     font-weight: bold;
 }
 
-.customer-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+.red{
+  background-color: #ffcbcb;
+}
+
+.orange{
+background-color: #ffdbcb;
+}
+
+.yellow{
+background-color: #fff5cb;
+}
+
+.green{
+background-color: #daffcb;
+}
+
+.gray{
+background-color: rgb(237, 235, 235);
 }
 
 .customer-table tbody tr:hover {
-    background-color: #f1f1f1;
+  background-color: #f0cbff;
 }
-
 .customer-table .button {
     padding: 5px 10px;
     background-color: #007bff;
