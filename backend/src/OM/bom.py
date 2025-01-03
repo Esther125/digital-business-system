@@ -81,10 +81,11 @@ def get_components_from_collection(component_collection_id):
         return []
 
 
-# 示例调用
-component_collection_id = "ComponentCollection#6"  # 替换为实际输入
-result_list = get_components_from_collection(component_collection_id)
-print(result_list)
+if __name__ == "__main__":
+    # 示例调用
+    component_collection_id = "ComponentCollection#6"  # 替换为实际输入
+    result_list = get_components_from_collection(component_collection_id)
+    print(result_list)
 
 # FastAPI 路由
 @app.post("/get-bom")
