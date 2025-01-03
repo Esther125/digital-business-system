@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
         loginLogoutLink.addEventListener("click", function (event) {
             event.preventDefault();
             sessionStorage.removeItem("token");
-            window.location.href = `${baseUrl}/webUI/LogInPage.html`;
+            window.location.href = `${baseUrl}/LogInPage`;
         });
     } else {
         linkText.textContent = "登入";
-        loginLogoutLink.href = `${baseUrl}/webUI/LogInPage.html`;
+        loginLogoutLink.href = `${baseUrl}/LogInPage`;
     }
 });

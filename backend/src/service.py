@@ -20,7 +20,7 @@ ROLE_PERMISSIONS = {
         "/componentInventoryPage",
         "/productInventoryPage",
     ],
-    "supplier": ["/OMpage"],
+    "supplier": ["/OMpage", "/componentInventoryPage"],
 }
 
 
