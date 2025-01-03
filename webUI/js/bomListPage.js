@@ -1,17 +1,16 @@
-async function fetchBomData(){
-    //在這裡抓資料
-    const response = await fetch('http://127.0.0.1:8000/get-bom', {
+async function fetchBomData() {
+    /* const response = await fetch('http://127.0.0.1:8000/api/get-bom', {  // 使用 API 路径
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ product: "Product#6" }) // 修改为实际产品 ID
+        body: JSON.stringify({ product: "Product#6" }) // 替换为实际产品 ID
     });
 
     const data = await response.json();
-    const boms = data.boms || []; // 获取后端返回的 BOM 数据
+    const boms = data.boms || [];
+    showOnTable(boms); */
 
-    showOnTable(boms);
     //先放假資料
     var boms_test=[
         {
@@ -43,7 +42,7 @@ async function fetchBomData(){
             "leadTime":"0"//零件的，資料庫設計的時候漏了要補，零件存貨會用到
         }
     ];
-   showOnTable(boms);
+   showOnTable(boms_test);
 }
 
 function showOnTable(boms) {

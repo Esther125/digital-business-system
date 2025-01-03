@@ -1,5 +1,5 @@
 async function fetchComponentData(){
-    //在這裡抓資料
+    /* //在這裡抓資料
     try {
         // 调用后端 API 获取所有组件的九期库存数据
         const response = await fetch('http://127.0.0.1:8000/get-components-data');
@@ -9,9 +9,9 @@ async function fetchComponentData(){
         showOnTable(componentLevels);
     } catch (error) {
         console.error("Error fetching component data:", error);
-    }
+    } */
     //先放假資料
-    var componentLevels=[
+    var componentLevels_test=[
         {
             "id":"Component#1",
             "times": ['第一期', '第二期', '第三期', '第四期', '第五期', '第六期', '第七期', '第八期', '第九期'],
@@ -23,7 +23,7 @@ async function fetchComponentData(){
             "inventoryLevel":[10, 20, 15, 10, 5, 25, 15, 5, 10]
         }
     ];
-   showOnTable(componentLevels);
+   showOnTable(componentLevels_test);
 }
 
 function showOnTable(componentLevels) {

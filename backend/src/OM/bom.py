@@ -88,7 +88,7 @@ if __name__ == "__main__":
     print(result_list)
 
 # FastAPI 路由
-@app.post("/get-bom")
+@app.get("/get-bom")
 async def fetch_bom(data: ProductRequest):
     component_collection = get_collection(data.product)
     if not component_collection:

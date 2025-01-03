@@ -1,5 +1,5 @@
 async function fetchProductData(){
-    //在這裡抓資料
+    /* //在這裡抓資料
     try {
         // 调用后端 API 获取产品的九期库存数据
         const response = await fetch('http://127.0.0.1:8000/get-products-data');
@@ -9,7 +9,7 @@ async function fetchProductData(){
         showOnTable(productLevels);
     } catch (error) {
         console.error("Error fetching product data:", error);
-    }
+    } */
     //先放假資料
     var productLevels_test=[
         {
@@ -23,6 +23,7 @@ async function fetchProductData(){
             "inventoryLevel":[10, 20, 15, 10, 5, 25, 15, 5, 10]
         }
     ];
+    showOnTable(productLevels_test);
 }
 
 function showOnTable(productLevels) {
