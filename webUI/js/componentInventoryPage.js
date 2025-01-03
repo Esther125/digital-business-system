@@ -1,6 +1,15 @@
-function fetchComponentData(){
+async function fetchComponentData(){
     //在這裡抓資料
+    try {
+        // 调用后端 API 获取所有组件的九期库存数据
+        const response = await fetch('http://127.0.0.1:8000/get-components-data');
+        const componentLevels = await response.json();
 
+        // 渲染表格和图表
+        showOnTable(componentLevels);
+    } catch (error) {
+        console.error("Error fetching component data:", error);
+    }
     //先放假資料
     var componentLevels=[
         {
@@ -17,24 +26,23 @@ function fetchComponentData(){
    showOnTable(componentLevels);
 }
 
-function showOnTable(componentLevels){
+function showOnTable(componentLevels) {
     const charts = document.getElementById('charts');
-    componentLevels.forEach(componentLevel=>{
-        const chartElement=document.createElement('canvas');
-        const newChart= new Chart(chartElement, {
+    charts.innerHTML = ""; // 清空之前的图表
+
+    componentLevels.forEach(componentLevel => {
+        const chartElement = document.createElement('canvas');
+        const newChart = new Chart(chartElement, {
             type: 'bar',
             data: {
-                labels:componentLevel.times,
+                labels: componentLevel.times,
                 datasets: [{
                     label: componentLevel.id,
-                    data:componentLevel.inventoryLevel ,
+                    data: componentLevel.inventoryLevel,
                 }]
             }
-        })
+        });
         charts.appendChild(chartElement);
-        
     });
-    console.log("push");
+    console.log("Charts updated");
 }
-// 瀏覽器載入時呼叫
-document.addEventListener('DOMContentLoaded', fetchComponentData);
