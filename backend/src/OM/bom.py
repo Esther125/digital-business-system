@@ -3,9 +3,10 @@ from pydantic import BaseModel
 import boto3 # type: ignore
 from dotenv import load_dotenv
 import os
+from fastapi import APIRouter
 
 load_dotenv()
-app = FastAPI()
+router = APIRouter()
 
 # DynamoDB 配置
 dynamodb = boto3.resource(
@@ -88,7 +89,7 @@ if __name__ == "__main__":
     print(result_list)
 
 # FastAPI 路由
-@app.get("/get-bom")
+@router.post("/get-bom")
 async def fetch_bom(data: ProductRequest):
     component_collection = get_collection(data.product)
     if not component_collection:

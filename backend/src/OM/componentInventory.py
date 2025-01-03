@@ -2,9 +2,10 @@ import boto3 # type: ignore
 import random
 from dotenv import load_dotenv
 import os
+from fastapi import APIRouter
 
 load_dotenv()
-app = FastAPI()
+router = APIRouter()
 
 # DynamoDB 配置
 dynamodb = boto3.resource(
@@ -188,6 +189,6 @@ from typing import List
 
 app = FastAPI()
 
-@app.get("/get-components-data")
+@router.get("/get-components-data")
 def fetch_all_components_data():
     return get_all_components_data()

@@ -11,7 +11,7 @@ async function fetchBomData() {
     const boms = data.boms || [];
     showOnTable(boms); */
 
-    //先放假資料
+    
     var boms_test=[
         {
             "productId":"LaptopA",//呈現的時候 Group by productId
