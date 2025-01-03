@@ -14,8 +14,8 @@ app = FastAPI()
 dynamodb = boto3.resource(
     'dynamodb',
     region_name='ap-northeast-1',
-    aws_access_key_id='AWS_ACCESS_KEY_ID',
-    aws_secret_access_key='AWS_SECRET_ACCESS_KEY'
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
 )
 
 table_name = "sysdata"

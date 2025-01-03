@@ -6,3 +6,4 @@ python-dotenv
 bcrypt
 pre-commit
 aiofiles
+boto3
