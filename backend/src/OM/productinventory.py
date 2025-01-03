@@ -6,9 +6,10 @@ import random
 
 from dotenv import load_dotenv
 import os
+from fastapi import APIRouter
 
 load_dotenv()
-app = FastAPI()
+router = APIRouter()
 
 # DynamoDB 配置
 dynamodb = boto3.resource(
@@ -108,7 +109,7 @@ if __name__ == "__main__":
     product_data = get_nine_periods_product_data("Product#1")
     print(product_data)
 
-@app.get("/get-products-data")
+@router.get("/get-products-data")
 def fetch_all_products_data():
     """
     获取所有产品的九期库存数据
