@@ -5,8 +5,8 @@ from fastapi import Depends, HTTPException, APIRouter, status
 from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from src.model import Token
-import os
 import aiofiles
+import os
 
 CURRENT_USER = None
 
@@ -45,7 +45,10 @@ async def main():
 @router.get("/orderListPage", response_class=HTMLResponse)
 async def orderListPage():
     if not check_user_access(CURRENT_USER, "/orderListPage"):
-        raise HTTPException(status_code=403, detail="Access Denied")
+        async with aiofiles.open("../webUI/403.html", mode="r") as f:
+            html_content = await f.read()
+        return HTMLResponse(content=html_content, status_code=403)
+        # raise HTTPException(status_code=403, detail="Access Denied")
 
     async with aiofiles.open("../webUI/orderListPage.html", mode="r") as f:
         html_content = await f.read()
@@ -55,7 +58,10 @@ async def orderListPage():
 @router.get("/CRMpage", response_class=HTMLResponse)
 async def CRMpage():
     if not check_user_access(CURRENT_USER, "/CRMpage"):
-        raise HTTPException(status_code=403, detail="Access Denied")
+        async with aiofiles.open("../webUI/403.html", mode="r") as f:
+            html_content = await f.read()
+        return HTMLResponse(content=html_content, status_code=403)
+        # raise HTTPException(status_code=403, detail="Access Denied!!!!!!!")
     async with aiofiles.open("../webUI/CRMpage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -87,7 +93,10 @@ async def SignUpPage():
 @router.get("/bomListPage", response_class=HTMLResponse)
 async def bomListPage():
     if not check_user_access(CURRENT_USER, "/bomListPage"):
-        raise HTTPException(status_code=403, detail="Access Denied")
+        async with aiofiles.open("../webUI/403.html", mode="r") as f:
+            html_content = await f.read()
+        return HTMLResponse(content=html_content, status_code=403)
+        # raise HTTPException(status_code=403, detail="Access Denied")
     async with aiofiles.open("../webUI/bomListPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -96,7 +105,10 @@ async def bomListPage():
 @router.get("/componentInventoryPage", response_class=HTMLResponse)
 async def componentInventoryPage():
     if not check_user_access(CURRENT_USER, "/componentInventoryPage"):
-        raise HTTPException(status_code=403, detail="Access Denied")
+        async with aiofiles.open("../webUI/403.html", mode="r") as f:
+            html_content = await f.read()
+        return HTMLResponse(content=html_content, status_code=403)
+        # raise HTTPException(status_code=403, detail="Access Denied")
     async with aiofiles.open("../webUI/componentInventoryPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -105,7 +117,10 @@ async def componentInventoryPage():
 @router.get("/customerList", response_class=HTMLResponse)
 async def customerList():
     if not check_user_access(CURRENT_USER, "/customerList"):
-        raise HTTPException(status_code=403, detail="Access Denied")
+        async with aiofiles.open("../webUI/403.html", mode="r") as f:
+            html_content = await f.read()
+        return HTMLResponse(content=html_content, status_code=403)
+        # raise HTTPException(status_code=403, detail="Access Denied")
     async with aiofiles.open("../webUI/customerList.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -114,7 +129,10 @@ async def customerList():
 @router.get("/productInventoryPage", response_class=HTMLResponse)
 async def productInventoryPage():
     if not check_user_access(CURRENT_USER, "/productInventoryPage"):
-        raise HTTPException(status_code=403, detail="Access Denied")
+        async with aiofiles.open("../webUI/403.html", mode="r") as f:
+            html_content = await f.read()
+        return HTMLResponse(content=html_content, status_code=403)
+        # raise HTTPException(status_code=403, detail="Access Denied")
     async with aiofiles.open("../webUI/productInventoryPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -123,7 +141,10 @@ async def productInventoryPage():
 @router.get("/rfmCustomerGroupPage", response_class=HTMLResponse)
 async def rfmCustomerGroupPage():
     if not check_user_access(CURRENT_USER, "/rfmCustomerGroupPage"):
-        raise HTTPException(status_code=403, detail="Access Denied")
+        async with aiofiles.open("../webUI/403.html", mode="r") as f:
+            html_content = await f.read()
+        return HTMLResponse(content=html_content, status_code=403)
+        # raise HTTPException(status_code=403, detail="Access Denied")
     async with aiofiles.open("../webUI/rfmCustomerGroupPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
