@@ -53,7 +53,7 @@ function fetchCustomerData(){
              <td>${customer.userId}</td>
              <td>${customer.rfmGroup}</td>
              <td>${customer.orderstatus}</td>
-             <td><a href="orderListPage.html"><button value=${customer.userId}>前往</button></a></td>
+             <td><a href="/orderListPage"><button value=${customer.userId}>前往</button></a></td>
              <td>${customer.Email}</td>`;
              newRow.setAttribute("class",customer.color);
              tbody.appendChild(newRow);
