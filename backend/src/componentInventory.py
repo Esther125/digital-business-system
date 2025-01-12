@@ -34,7 +34,7 @@ def calculate_and_update_component_demand(component_id):
             component_history_key = f"componentHistory#{component_id.split('#')[-1]}"
             history = component.get(component_history_key, {})
             usage_history = history.get('inventoryLevel', [])  # 获取历史库存数据列表
-            print(f"Usage history for {component_id}: {usage_history}")
+            #print(f"Usage history for {component_id}: {usage_history}")
 
             # 如果没有历史数据，默认使用 usagePerMonth
             if len(usage_history) == 0:
@@ -45,7 +45,7 @@ def calculate_and_update_component_demand(component_id):
 
             # 四舍五入到整数
             usage_per_month = max(round(usage_per_month), 1)  # 确保预测使用量至少为 1
-            print(f"Predicted usage per month for {component_id}: {usage_per_month}")
+            #print(f"Predicted usage per month for {component_id}: {usage_per_month}")
 
             # 计算需求量（考虑库存和安全水平）
             demand = max(1, (safe_level + usage_per_month) - inventory_level)  # 确保需求量至少为 1
@@ -60,7 +60,7 @@ def calculate_and_update_component_demand(component_id):
                 ExpressionAttributeValues={':demand': demand}
             )
 
-            print(f"Component {component_id} updated with forcastDemand: {demand}")
+            #print(f"Component {component_id} updated with forcastDemand: {demand}")
             return {"componentId": component_id, "forcastDemand": demand}
         else:
             print(f"Component {component_id} not found.")
@@ -129,7 +129,7 @@ def update_lead_time(component_id):
             UpdateExpression="SET leadTime = :leadTime",
             ExpressionAttributeValues={':leadTime': lead_time}
         )
-        print(f"Component {component_id} updated with leadTime: {lead_time}")
+        #print(f"Component {component_id} updated with leadTime: {lead_time}")
         return {"componentId": component_id, "leadTime": lead_time}
     except Exception as e:
         print(f"Error updating leadTime for {component_id}: {e}")
@@ -142,11 +142,11 @@ components = [f"Component#{i}" for i in range(1, 31)]
 for component in components:
     # 更新组件的预测需求量
     data = calculate_and_update_component_demand(component)
-    print("Updated Data:", data)
+    #print("Updated Data:", data)
     
     # 为组件添加 leadTime 字段
     lead_time_data = update_lead_time(component)
-    print("Lead Time Data:", lead_time_data)
+    #print("Lead Time Data:", lead_time_data)
 
 def get_nine_periods_data(component_id):
     """
