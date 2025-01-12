@@ -22,7 +22,7 @@ app.mount("/webUI", StaticFiles(directory="../WebUI"), name="static")
 app.include_router(customer_router, prefix="/api", tags=["Customers"])
 app.include_router(bom_router, prefix="/api", tags=["BOM"])
 app.include_router(component_inventory_router, prefix="/api", tags=["Component Inventory"])
-app.include_router(product_inventory_router, prefix="/api", tags=["Product Inventory"])
+app.include_router(product_inventory_router, prefix="/api/product-inventory", tags=["Product Inventory"])
 app.include_router(rfm_router, prefix="/api", tags=["RFM"])
 
 
@@ -38,6 +38,6 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {"message": "API is running"}
-    
+
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000, log_level="debug")
