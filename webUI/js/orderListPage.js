@@ -1,7 +1,27 @@
-function fetchCustomerData(){
-   //在這裡抓資料
+async function fetchCustomerOrders() {
+    const token = sessionStorage.getItem("token"); // 從 session 中獲取登入時存的 token
 
-   //先放假資料
+    try {
+        // 向後端發送請求，帶上 JWT token
+        const response = await fetch('http://127.0.0.1:8000/orders', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`, // 設置 Authorization 標頭
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`錯誤代碼: ${response.status}`);
+        }
+
+        const orders = await response.json(); // 解析回傳的 JSON 訂單資料
+        showOnTable(orders); // 將訂單資料渲染到頁面表格中
+    } catch (error) {
+        console.error("無法獲取訂單資料:", error);
+    }
+}
+   /* //先放假資料
    var orders=[
         {
             "userId":"User#5",//呈現的時候同使用者的放一起, Group by userId
@@ -32,7 +52,7 @@ function fetchCustomerData(){
         }
     ];
     showOnTable(orders);
-}
+} */
 
 function showOnTable(orders){
     const tbody=document.getElementById('output');

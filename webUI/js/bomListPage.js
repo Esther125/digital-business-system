@@ -1,6 +1,6 @@
-function fetchBomData(){
+async function fetchBomData(){
     //在這裡抓資料
-    /* const response = await fetch('http://127.0.0.1:8000/api/get-bom', {  // 使用 API 路径
+    const response = await fetch('http://127.0.0.1:8000/api/get-bom', {  // 使用 API 路径
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -10,9 +10,9 @@ function fetchBomData(){
 
     const data = await response.json();
     const boms = data.boms || [];
-    showOnTable(boms); */
+    showOnTable(boms);
     //先放假資料
-    var boms=[
+    /* var boms=[
         {
             "productId":"LaptopA",
             "componentId":"",
@@ -28,7 +28,7 @@ function fetchBomData(){
             "leadTime":"0"//零件的，資料庫設計的時候漏了要補，零件存貨會用到
         }
     ];
-   showOnTable(boms);
+   showOnTable(boms); */
 }
 function showOnTable(boms){
     const tbody=document.getElementById('output');

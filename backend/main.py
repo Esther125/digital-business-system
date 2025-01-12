@@ -13,8 +13,7 @@ from src.OM.bom import router as bom_router
 app = FastAPI(debug=True)
 app.include_router(router)
 
-app.mount("/webUI", StaticFiles(directory="../WebUI"), name="static")
-app.include_router(bom_router, prefix="/api")
+
 
 # CORS Settings
 app.add_middleware(

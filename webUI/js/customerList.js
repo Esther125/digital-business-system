@@ -1,7 +1,14 @@
-function fetchCustomerData(){
-    //在這裡抓資料
- 
-    //先放假資料
+async function fetchCustomerData() {
+    try {
+        // 呼叫後端 API 獲取客戶數據
+        const response = await fetch('http://127.0.0.1:8000/api/customers');
+        const data = await response.json();
+        showOnTable(data.customers);
+    } catch (error) {
+        console.error("Failed to fetch customer data:", error);
+    }
+}
+    /* //先放假資料
     var customers=[
          {
              "userId":"User#5",
@@ -40,7 +47,7 @@ function fetchCustomerData(){
          }
      ];
      showOnTable(customers);
- }
+ } */
  
  function showOnTable(customers){
      const tbody=document.getElementById('output');
