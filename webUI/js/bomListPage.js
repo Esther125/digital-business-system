@@ -1,50 +1,66 @@
-async function fetchBomData(){
-    //在這裡抓資料
-    const response = await fetch('http://127.0.0.1:8000/api/get-bom', {  // 使用 API 路径
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ product: "Product#6" }) // 替换为实际产品 ID
-    });
+async function fetchBomData() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/get-bom', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-    const data = await response.json();
-    const boms = data.boms || [];
-    showOnTable(boms);
-    //先放假資料
-    /* var boms=[
-        {
-            "productId":"LaptopA",
-            "componentId":"",
-            "componentAmount":"",
-            "forcastDemand":"0",//產品的，用算的
-            "leadTime":"0"//產品的
-        },
-        {
-            "productId":"",
-            "componentId":"Component#1",
-            "componentAmount":"2",
-            "forcastDemand":"0",//零件的，用算的
-            "leadTime":"0"//零件的，資料庫設計的時候漏了要補，零件存貨會用到
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    ];
-   showOnTable(boms); */
+
+        const data = await response.json();
+        const boms = data.boms || [];
+        showOnTable(boms);
+    } catch (error) {
+        console.error("Fetch BOM data failed:", error);
+    }
 }
-function showOnTable(boms){
-    const tbody=document.getElementById('output');
-    tbody.innerHTML="";
-    console.log("clean");
+
+function showOnTable(boms) {
+    const tbody = document.getElementById('output');
+    tbody.innerHTML = ""; // 清空表格
+
     boms.forEach(bom => {
-        const newRow =document.createElement('tr');    
-        newRow.innerHTML=`
+        // 顯示 Product 行
+        const productRow = document.createElement('tr');
+        productRow.innerHTML = `
             <td>${bom.productId}</td>
-            <td>${bom.componentId}</td>
-            <td>${bom.componentAmount}</td>
-            <td>${bom.forcastDemand}</td>
-            <td>${bom.leadTime}</td>`;
-            tbody.appendChild(newRow);
+            <td></td> <!-- 空白 Component -->
+            <td>${bom.currentQuantity}</td>
+            <td>${bom.forecastDemand}</td>
+            <td>${bom.leadTime}</td>
+        `;
+        tbody.appendChild(productRow);
+
+        // 顯示對應的 Component 行
+        if (bom.components.length === 0) {
+            const noComponentRow = document.createElement('tr');
+            noComponentRow.innerHTML = `
+                <td></td>
+                <td>No Components</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            `;
+            tbody.appendChild(noComponentRow);
+        } else {
+            bom.components.forEach(component => {
+                const componentRow = document.createElement('tr');
+                componentRow.innerHTML = `
+                    <td></td> <!-- 空白 Product -->
+                    <td>${component.componentId}</td>
+                    <td>${component.inventoryLevel}</td>
+                    <td>${component.forcastDemand}</td>
+                    <td>${component.leadTime}</td>
+                `;
+                tbody.appendChild(componentRow);
+            });
+        }
     });
-    console.log("push");
 }
-// 瀏覽器載入時呼叫
+
+// 瀏覽器載入時自動執行
 document.addEventListener('DOMContentLoaded', fetchBomData);
