@@ -4,10 +4,8 @@ import os
 from dotenv import load_dotenv
 from typing import List, Dict
 
-# 載入環境變數
+# 環境變量載入
 load_dotenv()
-
-# 初始化 FastAPI 路由
 router = APIRouter()
 
 # 配置 DynamoDB
@@ -19,40 +17,40 @@ dynamodb = boto3.resource(
 )
 table = dynamodb.Table("sysdata")
 
-# 提取產品數據
-def fetch_products() -> List[Dict]:
-    try:
-        response = table.scan(
-            FilterExpression="begins_with(id, :prefix)",
-            ExpressionAttributeValues={":prefix": "Product"}
-        )
-        return response.get("Items", [])
-    except Exception as e:
-        print(f"Error fetching products: {e}")
-        return []
-
-# API 路由：獲取產品庫存數據
+# 提取所有產品數據的 API
 @router.get("/get-products-data")
-def get_products_data():
-    products = fetch_products()
-    if not products:
-        raise HTTPException(status_code=404, detail="No products found")
-
-    # 格式化產品數據，添加計算邏輯
-    formatted_products = []
+def fetch_all_products_data():
+    """
+    獲取所有產品的九期數據
+    """
+    products = [f"Product#{i}" for i in range(1, 7)]  # 假設共有 6 個產品
+    result = []
     for product in products:
-        forecast_demand = 15  # 模擬值，應基於歷史訂單計算
-        safe_level = int(forecast_demand * 0.1)  # 假設 95% 服務水準
-        lead_time = product.get("leadTime", 30)  # 預設交貨週期為 30 天
-        re_order_point = int(forecast_demand * (lead_time / 30) + safe_level)
+        data = get_nine_periods_product_data(product)
+        if data:
+            result.append(data)
+    if not result:
+        raise HTTPException(status_code=404, detail="No products found.")
+    return {"products": result}
 
-        formatted_products.append({
-            "productId": product.get("id"),
-            "inventoryLevel": product.get("inventoryLevel", [0] * 9),
-            "forecastDemand": forecast_demand,
-            "safeLevel": safe_level,
-            "reOrderPoint": re_order_point,
-            "times": ['第一期', '第二期', '第三期', '第四期', '第五期', '第六期', '第七期', '第八期', '第九期']
-        })
-
-    return {"products": formatted_products}
+# 提取單個產品的九期庫存數據
+def get_nine_periods_product_data(product_id: str) -> Dict:
+    """
+    從 DynamoDB 中獲取指定產品的九期數據
+    """
+    try:
+        response = table.get_item(Key={'id': product_id})
+        if 'Item' in response:
+            product = response['Item']
+            product_history_key = f"productHistory#{product_id.split('#')[-1]}"
+            history = product.get(product_history_key, {})
+            return {
+                "productId": product_id,
+                "times": history.get('times', []),
+                "inventoryLevel": history.get('inventoryLevel', [])
+            }
+        else:
+            return None
+    except Exception as e:
+        print(f"Error retrieving data for {product_id}: {e}")
+        return None
