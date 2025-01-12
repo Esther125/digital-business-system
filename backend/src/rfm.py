@@ -18,7 +18,7 @@ dynamodb = boto3.resource(
     aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
 )
 
-# 指定表名
+# 配置表名
 table_name = "sysdata"
 table = dynamodb.Table(table_name)
 
@@ -39,7 +39,7 @@ COLORS = {
     5: "gray"
 }
 
-# 從 DynamoDB 提取所有客戶資料
+# 提取所有有效的客戶資料
 def fetch_all_customers() -> List[Dict]:
     try:
         response = table.scan(
@@ -51,11 +51,11 @@ def fetch_all_customers() -> List[Dict]:
         print(f"Error fetching customers: {e}")
         return []
 
-# 根據 RFM 分組邏輯處理數據
+# 處理 RFM 分組邏輯
 def process_rfm_groups(customers: List[Dict]) -> List[Dict]:
     result = []
     for customer in customers:
-        rfm_group = int(customer.get("rfmGroup", 5))  # 默認分組為 5（流失或無價值客戶）
+        rfm_group = int(customer.get("rfmGroup", 5))  # 默認為組 5
         result.append({
             "userId": customer.get("userId", "N/A"),
             "recency": customer.get("recency", "N/A"),
@@ -66,15 +66,17 @@ def process_rfm_groups(customers: List[Dict]) -> List[Dict]:
         })
     return result
 
-# API 路由：提取客戶資料並返回分組結果
+# API 路由：返回客戶分組數據
 @router.get("/rfm-customers")
 def fetch_rfm_customers():
     """
-    提取 RFM 分組的客戶資料
+    提取 RFM 分組的客戶數據
     """
     customers = fetch_all_customers()
     if not customers:
         raise HTTPException(status_code=404, detail="No customers found")
 
     grouped_customers = process_rfm_groups(customers)
+    # 過濾無效客戶數據
+    grouped_customers = [customer for customer in grouped_customers if customer["rfmGroup"] != "未知分組"]
     return {"customers": grouped_customers}
