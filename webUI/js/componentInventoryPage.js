@@ -1,79 +1,55 @@
-function fetchComponentData(){
-    //在這裡抓資料
-    //先放假資料
-    var componentDatas=[
-        {
-            "id":"Component#1",
-            "times": ['第一期', '第二期', '第三期', '第四期', '第五期', '第六期', '第七期', '第八期', '第九期'],
-            "inventoryLevel":[1, 10, 15, 25, 5, 15, 10, 5, 1],//這個要想一下怎麼撈往期的資料
-            "forcastDemand":"15",//= SUM（從訂單列表中撈需要它的產品們最近三個月的每月平均訂購量*BOM裡各自的零件需求）
-            "safeLevel":"8",// =z*forcastDemand*0.1 ，設需求呈常態分布，服務水準為95%
-            "reOrderPoint":"12"//＝forcastDemand*(leadTime/30)+safeLevel
-        },
-        {
-            "id":"Component#2",
-            "times": ['第一期', '第二期', '第三期', '第四期', '第五期', '第六期', '第七期', '第八期', '第九期'],
-            "inventoryLevel":[10, 20, 15, 10, 5, 25, 15, 5, 10],
-            "forcastDemand":"10",
-            "safeLevel":"5",
-            "reOrderPoint":"10"
-        }
-    ];
-   showOnTable(componentDatas);
+async function fetchComponentData() {
+    try {
+        // 呼叫後端 API 獲取組件數據
+        const response = await fetch('http://127.0.0.1:8000/api/component-inventory/get-components-data');
+        const data = await response.json();
+        renderComponentCharts(data.components);
+    } catch (error) {
+        console.error("Failed to fetch component data:", error);
+    }
 }
-function showOnTable(componentDatas){
-    const charts = document.getElementById('charts');
 
-    componentDatas.forEach(componentData=>{
-        //長條圖
-        const chartElement=document.createElement('canvas');
-        const newChart= new Chart(chartElement, {
+function renderComponentCharts(componentDatas) {
+    const chartsContainer = document.getElementById('charts');
+    chartsContainer.innerHTML = ""; // 清空圖表區域
+
+    componentDatas.forEach(componentData => {
+        // 過濾數據：不顯示 inventoryLevel 全為 0 的組件
+        if (!componentData.inventoryLevel || componentData.inventoryLevel.every(level => level === 0)) {
+            return;
+        }
+
+        // 創建 Canvas 元素
+        const chartElement = document.createElement('canvas');
+
+        // 使用 Chart.js 渲染長條圖
+        const newChart = new Chart(chartElement, {
             type: 'bar',
             data: {
-                labels:componentData.times,
+                labels: componentData.times,
                 datasets: [{
                     label: componentData.id,
-                    data:componentData.inventoryLevel ,
+                    data: componentData.inventoryLevel,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
                 }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
-        })
-        charts.appendChild(chartElement);
+        });
 
-        //table
-        const table=document.createElement('table');
-        table.innerHTML=`
-            <table>
-                                <thead>
-                                    <tr>
-                                        <th>預期需求（個/月）</th>
-                                        <th>安全存量</th>
-                                        <th>再訂購點</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>${componentData.forcastDemand}</td>
-                                        <td>${componentData.safeLevel}</td>
-                                        <td>${componentData.reOrderPoint}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-        `;
-        table.setAttribute("class","component-table ");
-        charts.appendChild(table); 
+        // 添加圖表到容器
+        chartsContainer.appendChild(chartElement);
     });
-    console.log("push");
-}
-// 瀏覽器載入時呼叫
-document.addEventListener('DOMContentLoaded', fetchComponentData);
-/* 
-    try {
-        // 调用后端 API 获取所有组件的九期库存数据
-        const response = await fetch('http://127.0.0.1:8000/get-components-data');
-        const componentLevels = await response.json();
 
-        // 渲染表格和图表
-        showOnTable(componentLevels);
-    } catch (error) {
-        console.error("Error fetching component data:", error);
-    } */
+    console.log("Component charts rendered successfully.");
+}
+
+// 瀏覽器載入時觸發
+document.addEventListener('DOMContentLoaded', fetchComponentData);
