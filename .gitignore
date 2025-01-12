@@ -3,3 +3,4 @@ __pycache__/
 BE_env/
 .DS_Store
 .myenv
+myenv/
