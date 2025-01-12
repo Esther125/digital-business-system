@@ -21,7 +21,10 @@ table = dynamodb.Table(table_name)
 # 計算產品的所需數量和下期預期需求
 def calculate_product_requirements(product_id):
     try:
+        # 動態生成對應的 productHistory 鍵
+        history_key = f"productHistory#{product_id.split('#')[1]}"
         response = table.get_item(Key={'id': product_id})
+
         if 'Item' not in response:
             # 返回默認值，確保表格顯示
             return {
@@ -34,7 +37,7 @@ def calculate_product_requirements(product_id):
             }
 
         product = response['Item']
-        product_history = product.get('productHistory#1', {}).get('inventoryLevel', [])
+        product_history = product.get(history_key, {}).get('inventoryLevel', [])
 
         # 確保數據充足，避免越界
         if len(product_history) < 9:
@@ -97,6 +100,7 @@ def get_bom_data():
             product_id = f"Product#{i}"
             product_data = calculate_product_requirements(product_id)
             if not product_data:
+                print(f"Error: No data for {product_id}.")
                 continue
 
             component_collection_id = product_data.get("componentCollection", None)
@@ -116,6 +120,7 @@ def get_bom_data():
 
             product_data["components"] = components
             boms.append(product_data)
+            print(f"Processed {product_id}: {product_data}")  # 調試用日誌
 
         return boms
     except Exception as e:
