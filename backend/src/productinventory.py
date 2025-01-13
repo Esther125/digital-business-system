@@ -36,7 +36,7 @@ def fetch_all_products_data():
 # 提取單個產品的九期庫存數據
 def get_nine_periods_product_data(product_id: str) -> Dict:
     """
-    從 DynamoDB 中獲取指定產品的九期數據
+    從 DynamoDB 中獲取指定產品的九期數據，並包含其他產品詳細信息
     """
     try:
         response = table.get_item(Key={'id': product_id})
@@ -47,7 +47,12 @@ def get_nine_periods_product_data(product_id: str) -> Dict:
             return {
                 "productId": product_id,
                 "times": history.get('times', []),
-                "inventoryLevel": history.get('inventoryLevel', [])
+                "inventoryLevel": history.get('inventoryLevel', []),
+                "componentCollection": product.get("componentCollection", "N/A"),
+                "leadTime": product.get("leadTime", "N/A"),
+                "price": product.get("price", "N/A"),
+                "totalCost": product.get("totalCost", "N/A"),
+                "productIdValue": product.get("productId", "N/A")
             }
         else:
             return None

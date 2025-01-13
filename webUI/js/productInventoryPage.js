@@ -14,6 +14,10 @@ function renderCharts(productDatas) {
     chartsContainer.innerHTML = ""; // 清空圖表區域
 
     productDatas.forEach(productData => {
+        // 創建圖表容器
+        const chartWrapper = document.createElement('div');
+        chartWrapper.className = "chart-wrapper";
+
         // 創建 Canvas 元素
         const chartElement = document.createElement('canvas');
 
@@ -39,11 +43,35 @@ function renderCharts(productDatas) {
             }
         });
 
-        // 添加圖表到容器
-        chartsContainer.appendChild(chartElement);
+        // 創建表格
+        const tableElement = document.createElement('table');
+        tableElement.className = "product-details-table";
+        tableElement.innerHTML = `
+            <tr>
+                <th>Component Collection</th>
+                <th>Lead Time</th>
+                <th>Price</th>
+                <th>Total Cost</th>
+                <th>Product ID</th>
+            </tr>
+            <tr>
+                <td>${productData.componentCollection}</td>
+                <td>${productData.leadTime}</td>
+                <td>${productData.price}</td>
+                <td>${productData.totalCost}</td>
+                <td>${productData.productIdValue}</td>
+            </tr>
+        `;
+
+        // 將圖表和表格添加到容器
+        chartWrapper.appendChild(chartElement);
+        chartWrapper.appendChild(tableElement);
+
+        // 添加容器到主區域
+        chartsContainer.appendChild(chartWrapper);
     });
 
-    console.log("Charts rendered successfully.");
+    console.log("Charts and tables rendered successfully.");
 }
 
 // 瀏覽器載入時觸發
