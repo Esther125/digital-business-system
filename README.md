@@ -31,3 +31,10 @@ pre-commit install
 # Manually check all files
 pre-commit run --all-files
 ```
+
+### ENV setting
+In Amazon db IAM Security credentials you can get Access keys, create a new one or use existed one
+```bash
+AWS_ACCESS_KEY_ID='AWS_ACCESS_KEY_ID'
+AWS_SECRET_ACCESS_KEY='AWS_SECRET_ACCESS_KEY'
+```
