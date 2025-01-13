@@ -1,65 +1,95 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Query
 from typing import List, Dict
+from boto3.dynamodb.conditions import Key
 import boto3
 import os
 from dotenv import load_dotenv
-from src.service import get_current_user
 
-# 載入環境變量
+# 載入環境變數
 load_dotenv()
 
 router = APIRouter()
 
 # 配置 DynamoDB
 dynamodb = boto3.resource(
-    'dynamodb',
-    region_name='ap-northeast-1',
-    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+    "dynamodb",
+    region_name="ap-northeast-1",
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
 )
-table = dynamodb.Table("sysdata")
+sysdata_table = dynamodb.Table("sysdata")
 
-# 訂單狀態顏色映射
 STATUS_COLORS = {
     "confirmed": "red",
     "processing": "green",
-    "finished": "gray"
+    "finished": "gray",
 }
 
-# API 路由：根據當前登入用戶提取訂單數據
-@router.get("/orders", response_model=List[Dict])
-def get_orders(current_user: str = Depends(get_current_user)):
-    """
-    根據目前登入的客戶 ID 篩選該客戶的訂單。
-    """
+@router.get("/orders", response_model=Dict[str, List[Dict]])
+def get_orders_grouped_by_user(userId: str = Query(default=None)):
     try:
-        # 篩選 buyer 屬於當前使用者的訂單
-        response = table.scan(
-            FilterExpression="buyer = :customer",
-            ExpressionAttributeValues={":customer": f"Customer#{current_user}"}
-        )
-        orders = response.get("Items", [])
+        # 查詢 customer 表以找到 buyer
+        buyer = None
+        if userId:
+            # 假設 customer 表的 Partition Key 是 id，並存儲 userId
+            customer_response = sysdata_table.get_item(Key={"id": f"Customer#{userId}"})
+            if "Item" in customer_response:
+                buyer = customer_response["Item"].get("buyer", None)
+                if not buyer:
+                    raise HTTPException(status_code=404, detail=f"未找到與 userId {userId} 對應的 buyer")
+            else:
+                raise HTTPException(status_code=404, detail=f"未找到 userId {userId} 的客戶資料")
 
-        # 格式化數據
-        formatted_orders = []
+        # 根據 buyer 查詢訂單
+        if buyer:
+            response = sysdata_table.query(
+                IndexName="buyer-index",  # 指定 GSI 名稱
+                KeyConditionExpression=Key("buyer").eq(buyer)
+            )
+        else:
+            response = sysdata_table.scan()
+
+        orders = response.get("Items", [])
+        if not orders:
+            raise HTTPException(status_code=404, detail="未找到訂單數據")
+
+        # 分組訂單
+        grouped_orders = {}
         for order in orders:
-            product_info = order.get("productInfo", [])
-            total_profit = sum([int(info[1]) for info in product_info])  # 計算訂單總利潤
-            ddl = order.get("DDL", "N/A")
-            formatted_orders.append({
-                "userId": order.get("buyer", "N/A"),
+            user_id = order.get("buyer", "Unknown")
+            product_collection_id = order.get("productCollection", None)
+
+            product_info = []
+            if product_collection_id:
+                try:
+                    # 查詢產品集合
+                    product_response = sysdata_table.get_item(Key={"id": product_collection_id})
+                    if "Item" not in product_response:
+                        continue
+                    products = product_response["Item"].get("products", [])
+                    product_info = [
+                        {"productId": p["productId"], "amount": p["productAmount"]} for p in products
+                    ]
+                except Exception as e:
+                    print(f"查詢產品集合時發生錯誤: {e}")
+                    continue
+
+            formatted_order = {
+                "userId": user_id,
                 "id": order.get("id", "N/A"),
                 "status": order.get("status", "N/A"),
                 "color": STATUS_COLORS.get(order.get("status"), "gray"),
-                "DDL": ddl,
+                "DDL": order.get("DDL", "N/A"),
                 "productInfo": product_info,
-                "orderProfit": total_profit
-            })
+            }
 
-        # 按 DDL (Deadline) 排序
-        formatted_orders.sort(key=lambda x: x["DDL"])
+            if user_id not in grouped_orders:
+                grouped_orders[user_id] = []
+            grouped_orders[user_id].append(formatted_order)
 
-        return formatted_orders
+        return grouped_orders
+
     except Exception as e:
         print(f"取得訂單資料時發生錯誤: {e}")
         raise HTTPException(status_code=500, detail="無法取得訂單資料")
+

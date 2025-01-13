@@ -5,11 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import logging
 
-from src.customer import router as customer_router  # 加載 customer.py 路由
-from src.bom import router as bom_router  # 加載 bom.py 路由
-from src.componentInventory import router as component_inventory_router  # 加載 componentInventory.py 路由
-from src.productinventory import router as product_inventory_router  # 加載 productinventory.py 路由
-from src.rfm import router as rfm_router  # 加載 rfm.py 路由
+from src.customer import router as customer_router
+from src.bom import router as bom_router
+from src.componentInventory import router as component_inventory_router
+from src.productinventory import router as product_inventory_router
+from src.rfm import router as rfm_router
+from src.order import router as order_router
+
+
 
 logger = logging.getLogger("uvicorn.error")
 logger.setLevel(logging.DEBUG)
@@ -24,6 +27,7 @@ app.include_router(bom_router, prefix="/api", tags=["BOM"])
 app.include_router(component_inventory_router, prefix="/api/component-inventory", tags=["Component Inventory"])
 app.include_router(product_inventory_router, prefix="/api/product-inventory", tags=["Product Inventory"])
 app.include_router(rfm_router, prefix="/api", tags=["RFM"])
+app.include_router(order_router, prefix="/api", tags=["Orders"])
 
 
 # CORS Settings
