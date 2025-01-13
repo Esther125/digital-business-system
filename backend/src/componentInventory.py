@@ -20,7 +20,7 @@ table = dynamodb.Table("sysdata")
 # 提取九期數據
 def get_nine_periods_data(component_id: str) -> Dict:
     """
-    從 DynamoDB 中提取指定組件的九期數據
+    從 DynamoDB 中提取指定組件的詳細數據，包括額外字段
     """
     try:
         response = table.get_item(Key={'id': component_id})
@@ -28,21 +28,24 @@ def get_nine_periods_data(component_id: str) -> Dict:
             component = response['Item']
             component_history_key = f"componentHistory#{component_id.split('#')[-1]}"
             history = component.get(component_history_key, {})
-            inventory_levels = history.get('inventoryLevel', [])
-
-            # 過濾：如果數據全為 0，則不返回
-            if not inventory_levels or all(level == 0 for level in inventory_levels):
-                return None
 
             return {
                 "id": component_id,
                 "times": history.get('times', []),
-                "inventoryLevel": inventory_levels
+                "inventoryLevel": history.get('inventoryLevel', []),
+                "forcastDemand": component.get("forcastDemand", "N/A"),
+                "holdingCostPerMonth": component.get("holdingCostPerMonth", "N/A"),
+                "leadTime": component.get("leadTime", "N/A"),
+                "orderAmount": component.get("orderAmount", "N/A"),
+                "orderCost": component.get("orderCost", "N/A"),
+                "safeLevel": component.get("safeLevel", "N/A"),
+                "unitCost": component.get("unitCost", "N/A"),
+                "usagePerMonth": component.get("usagePerMonth", "N/A")
             }
         else:
             return None
     except Exception as e:
-        print(f"Error retrieving nine periods data for {component_id}: {e}")
+        print(f"Error retrieving data for {component_id}: {e}")
         return None
 
 # 提取所有組件數據

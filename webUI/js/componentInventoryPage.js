@@ -19,11 +19,15 @@ function renderComponentCharts(componentDatas) {
             return;
         }
 
+        // 創建圖表容器
+        const chartWrapper = document.createElement('div');
+        chartWrapper.className = "chart-wrapper";
+
         // 創建 Canvas 元素
         const chartElement = document.createElement('canvas');
 
         // 使用 Chart.js 渲染長條圖
-        const newChart = new Chart(chartElement, {
+        new Chart(chartElement, {
             type: 'bar',
             data: {
                 labels: componentData.times,
@@ -44,12 +48,43 @@ function renderComponentCharts(componentDatas) {
             }
         });
 
-        // 添加圖表到容器
-        chartsContainer.appendChild(chartElement);
+        // 創建表格
+        const tableElement = document.createElement('table');
+        tableElement.className = "component-details-table";
+        tableElement.innerHTML = `
+            <tr>
+                <th>Forcast Demand</th>
+                <th>Holding Cost/Month</th>
+                <th>Lead Time</th>
+                <th>Order Amount</th>
+                <th>Order Cost</th>
+                <th>Safe Level</th>
+                <th>Unit Cost</th>
+                <th>Usage/Month</th>
+            </tr>
+            <tr>
+                <td>${componentData.forcastDemand}</td>
+                <td>${componentData.holdingCostPerMonth}</td>
+                <td>${componentData.leadTime}</td>
+                <td>${componentData.orderAmount}</td>
+                <td>${componentData.orderCost}</td>
+                <td>${componentData.safeLevel}</td>
+                <td>${componentData.unitCost}</td>
+                <td>${componentData.usagePerMonth}</td>
+            </tr>
+        `;
+
+        // 將圖表和表格添加到容器
+        chartWrapper.appendChild(chartElement);
+        chartWrapper.appendChild(tableElement);
+
+        // 添加容器到主區域
+        chartsContainer.appendChild(chartWrapper);
     });
 
-    console.log("Component charts rendered successfully.");
+    console.log("Component charts and tables rendered successfully.");
 }
+
 
 // 瀏覽器載入時觸發
 document.addEventListener('DOMContentLoaded', fetchComponentData);
