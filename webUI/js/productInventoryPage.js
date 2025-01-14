@@ -48,18 +48,14 @@ function renderCharts(productDatas) {
         tableElement.className = "product-table";
         tableElement.innerHTML = `
             <tr>
-                <th>Component Collection</th>
-                <th>Lead Time</th>
-                <th>Price</th>
-                <th>Total Cost</th>
-                <th>Product ID</th>
+                <th>Expected Demand</th>
+                <th>Safety Stock</th>
+                <th>Reorder Point</th>
             </tr>
             <tr>
-                <td>${productData.componentCollection}</td>
-                <td>${productData.leadTime}</td>
-                <td>${productData.price}</td>
-                <td>${productData.totalCost}</td>
-                <td>${productData.productIdValue}</td>
+                <td>${productData.expectedDemand}</td>
+                <td>${productData.safetyStock}</td>
+                <td>${productData.reorderPoint}</td>
             </tr>
         `;
 
@@ -73,6 +69,7 @@ function renderCharts(productDatas) {
 
     console.log("Charts and tables rendered successfully.");
 }
+
 
 // 瀏覽器載入時觸發
 document.addEventListener('DOMContentLoaded', fetchProductData);

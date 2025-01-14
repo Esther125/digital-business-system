@@ -50,47 +50,33 @@ function renderComponentCharts(componentDatas) {
 
         // 創建表格
         const tableElement = document.createElement('table');
-        tableElement.className = "component-table"; // 添加 CSS 類名
+        tableElement.className = "component-table";
         tableElement.innerHTML = `
             <thead>
                 <tr>
-                    <th>Forcast Demand</th>
-                    <th>Holding Cost/Month</th>
-                    <th>Lead Time</th>
-                    <th>Order Amount</th>
-                    <th>Order Cost</th>
-                    <th>Safe Level</th>
-                    <th>Unit Cost</th>
-                    <th>Usage/Month</th>
+                    <th>Expected Demand</th>
+                    <th>Safety Stock</th>
+                    <th>Reorder Point</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>${componentData.forcastDemand}</td>
-                    <td>${componentData.holdingCostPerMonth}</td>
-                    <td>${componentData.leadTime}</td>
-                    <td>${componentData.orderAmount}</td>
-                    <td>${componentData.orderCost}</td>
-                    <td>${componentData.safeLevel}</td>
-                    <td>${componentData.unitCost}</td>
-                    <td>${componentData.usagePerMonth}</td>
+                    <td>${componentData.expectedDemand}</td>
+                    <td>${componentData.safetyStock}</td>
+                    <td>${componentData.reorderPoint}</td>
                 </tr>
             </tbody>
         `;
 
-        // 將表格添加到圖表容器
-        
-
-        // 將圖表和表格添加到容器
+        // 添加圖表與表格
         chartWrapper.appendChild(chartElement);
         chartWrapper.appendChild(tableElement);
-        //chartWrapper.appendChild(tableElement);
 
-        // 添加容器到主區域
+        // 添加至主區域
         chartsContainer.appendChild(chartWrapper);
     });
 
-    console.log("Component charts and tables rendered successfully.");
+    console.log("Component charts and updated tables rendered successfully.");
 }
 
 
