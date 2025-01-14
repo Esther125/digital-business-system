@@ -41,6 +41,7 @@ def get_nine_periods_data(component_id: str) -> Dict:
                 "safeLevel": component.get("safeLevel", "N/A"),
                 "unitCost": component.get("unitCost", "N/A"),
                 "usagePerMonth": component.get("usagePerMonth", "N/A")
+                
             }
         else:
             return None

@@ -18,6 +18,7 @@ function showOnTable(customers) {
     customers
         .filter(customer => customer.rfmGroup !== "未知分組")
         .sort((a, b) => a.rfmGroup.localeCompare(b.rfmGroup)) // 按分組排序
+        .reverse() // 顛倒順序
         .forEach(customer => {
             const newRow = document.createElement('tr');
             newRow.innerHTML = `

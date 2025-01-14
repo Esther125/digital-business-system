@@ -50,33 +50,41 @@ function renderComponentCharts(componentDatas) {
 
         // 創建表格
         const tableElement = document.createElement('table');
-        tableElement.className = "component-details-table";
+        tableElement.className = "component-table"; // 添加 CSS 類名
         tableElement.innerHTML = `
-            <tr>
-                <th>Forcast Demand</th>
-                <th>Holding Cost/Month</th>
-                <th>Lead Time</th>
-                <th>Order Amount</th>
-                <th>Order Cost</th>
-                <th>Safe Level</th>
-                <th>Unit Cost</th>
-                <th>Usage/Month</th>
-            </tr>
-            <tr>
-                <td>${componentData.forcastDemand}</td>
-                <td>${componentData.holdingCostPerMonth}</td>
-                <td>${componentData.leadTime}</td>
-                <td>${componentData.orderAmount}</td>
-                <td>${componentData.orderCost}</td>
-                <td>${componentData.safeLevel}</td>
-                <td>${componentData.unitCost}</td>
-                <td>${componentData.usagePerMonth}</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Forcast Demand</th>
+                    <th>Holding Cost/Month</th>
+                    <th>Lead Time</th>
+                    <th>Order Amount</th>
+                    <th>Order Cost</th>
+                    <th>Safe Level</th>
+                    <th>Unit Cost</th>
+                    <th>Usage/Month</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>${componentData.forcastDemand}</td>
+                    <td>${componentData.holdingCostPerMonth}</td>
+                    <td>${componentData.leadTime}</td>
+                    <td>${componentData.orderAmount}</td>
+                    <td>${componentData.orderCost}</td>
+                    <td>${componentData.safeLevel}</td>
+                    <td>${componentData.unitCost}</td>
+                    <td>${componentData.usagePerMonth}</td>
+                </tr>
+            </tbody>
         `;
+
+        // 將表格添加到圖表容器
+        
 
         // 將圖表和表格添加到容器
         chartWrapper.appendChild(chartElement);
         chartWrapper.appendChild(tableElement);
+        //chartWrapper.appendChild(tableElement);
 
         // 添加容器到主區域
         chartsContainer.appendChild(chartWrapper);

@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 import boto3
 from dotenv import load_dotenv
 import os
+import random  # 引入 random 模組生成隨機數
 
 load_dotenv()
 router = APIRouter()
@@ -69,7 +70,10 @@ def calculate_product_requirements(product_id):
 
 
 # 獲取組件的需求數據
-def calculate_component_requirements(component_id):
+def calculate_component_requirements(component_id, product_current_quantity):
+    """
+    計算組件需求數據，將 inventoryLevel 設置為 productId 的 currentQuantity 乘以 1-5 的隨機整數
+    """
     try:
         response = table.get_item(Key={'id': component_id})
         if 'Item' not in response:
@@ -81,11 +85,14 @@ def calculate_component_requirements(component_id):
             }
 
         component = response['Item']
+        # 設置 inventoryLevel
+        inventory_level = product_current_quantity * random.randint(1, 5)
+
         return {
             "componentId": component_id,
             "forcastDemand": component.get("forcastDemand", 0),
             "leadTime": component.get("leadTime", 0),
-            "inventoryLevel": component.get("inventoryLevel", 0),
+            "inventoryLevel": inventory_level,  # 使用隨機計算的 inventoryLevel
         }
     except Exception as e:
         print(f"Error calculating component requirements for {component_id}: {e}")
@@ -113,14 +120,15 @@ def get_bom_data():
                     collection = collection_response['Item']
                     for component in collection.get("components", []):
                         component_data = calculate_component_requirements(
-                            component.get("componentId", "N/A")
+                            component.get("componentId", "N/A"),
+                            product_data["currentQuantity"]  # 傳遞產品的 currentQuantity
                         )
                         if component_data:
                             components.append(component_data)
 
             product_data["components"] = components
             boms.append(product_data)
-            print(f"Processed {product_id}: {product_data}")  # 調試用日誌
+            #print(f"Processed {product_id}: {product_data}")  # 調試用日誌
 
         return boms
     except Exception as e:

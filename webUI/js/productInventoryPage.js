@@ -45,7 +45,7 @@ function renderCharts(productDatas) {
 
         // 創建表格
         const tableElement = document.createElement('table');
-        tableElement.className = "product-details-table";
+        tableElement.className = "product-table";
         tableElement.innerHTML = `
             <tr>
                 <th>Component Collection</th>

@@ -62,21 +62,28 @@ def process_rfm_groups(customers: List[Dict]) -> List[Dict]:
             "frequency": customer.get("frequency", 0),
             "monetaryValue": customer.get("monetaryValue", 0),
             "rfmGroup": RFM_GROUPS.get(rfm_group, "未知分組"),
-            "color": COLORS.get(rfm_group, "gray")
+            "color": COLORS.get(rfm_group, "gray"),
+            "groupOrder": rfm_group  # 用於排序的關鍵字段
         })
+
+    # 按 groupOrder 升序排序，然後反轉列表
+    result.sort(key=lambda x: x["groupOrder"])
+    result.reverse()  # 顛倒順序
     return result
 
-# API 路由：返回客戶分組數據
 @router.get("/rfm-customers")
 def fetch_rfm_customers():
     """
-    提取 RFM 分組的客戶數據
+    提取 RFM 分組的客戶數據，並顛倒順序
     """
     customers = fetch_all_customers()
     if not customers:
         raise HTTPException(status_code=404, detail="No customers found")
 
     grouped_customers = process_rfm_groups(customers)
+
     # 過濾無效客戶數據
     grouped_customers = [customer for customer in grouped_customers if customer["rfmGroup"] != "未知分組"]
+
+    # 返回已顛倒的數據
     return {"customers": grouped_customers}
