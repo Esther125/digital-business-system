@@ -1,80 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Order List Page</title>
-    <link rel="stylesheet" href="../webUI/CSS/orderListPage.css" />
-    <link rel="stylesheet" href="../webUI/CSS/style.css" />
-    <link rel="stylesheet" href="../webUI/CSS/sideBar.css" />
-</head>
-<body>
-    <div class="orderListPage">
-        <div class="page-head" id="page-head">
-            <div class="group-1">
-                <div class="quanta-computer">
-                    Quanta Computer
-                    <br />
-                </div>
-                <img class="logo" src="../webUI/Assets/logo0.png" />
-            </div>
-            <img
-                class="index"
-                src="../webUI/Assets/index0.png"
-                id="openSidebarButton"
-            />
-            <a href="/LogInPage">
-                <img class="user" src="../webUI/Assets/user0.png" />
-            </a>
-        </div>
-        <div class="page-tail" id="page-tail">
-            <div class="group-12">
-                <div class="group-13">Group 1</div>
-            </div>
-        </div>
-        <div class="frame-3" id="frame-3">
-            <div class="ai">
-                <span>
-                    <span class="ai-span">訂單列表</span>
-                    <span class="ai-span2">
+    <head>
+        <title>Order List Page</title>
+        <link rel="stylesheet" href="../webUI/CSS/orderListPage.css" />
+        <link rel="stylesheet" href="../webUI/CSS/style.css" />
+        <link rel="stylesheet" href="../webUI/CSS/sideBar.css" />
+    </head>
+    <body>
+        <div class="orderListPage">
+            <div class="page-head" id="page-head">
+                <div class="group-1">
+                    <div class="quanta-computer">
+                        Quanta Computer
                         <br />
-                    </span>
-                    <span class="ai-span3">
-                        專為廣達電腦設計的一站式資訊管理系統，針對洶湧而來的筆記型電腦與客製化AI伺服器組裝訂單提出輕量化的解方！
-                    </span>
-                </span>
-            </div>
-            <div class="line-1"></div>
-            <div class="ai2">
-                <span>
-                    <div>
-                        <label for="userFilter">選擇客戶:</label>
-                        <select id="userFilter">
-                            <option value="">全部客戶</option>
-                            <option value="Customer#1">Customer#1</option>
-                            <option value="Customer#2">Customer#2</option>
-                            <option value="Customer#3">Customer#3</option>
-                            <option value="Customer#4">Customer#4</option>
-                            <option value="Customer#5">Customer#5</option>
-                        </select>
                     </div>
-                    <span class="ai-2-span">
-                        <table class="customer-table">
-                            <thead>
-                                <tr>
-                                    <th>顧客編號</th>
-                                    <th>訂單編號</th>
-                                    <th>訂單狀態</th>
-                                    <th>訂單截止時間</th>
-                                    <th>預期收益(萬元)</th>
-                                    <th>產品集合</th>
-                                </tr>
-                            </thead>
-                            <tbody id="output"></tbody>
-                        </table>
+                    <img class="logo" src="../webUI/Assets/logo0.png" />
+                </div>
+                <img
+                    class="index"
+                    src="../webUI/Assets/index0.png"
+                    id="openSidebarButton"
+                />
+                <a href="/LogInPage">
+                    <img class="user" src="../webUI/Assets/user0.png" />
+                </a>
+            </div>
+            <div class="page-tail" id="page-tail">
+                <div class="group-12">
+                    <div class="group-13">Group 1</div>
+                </div>
+            </div>
+            <div class="frame-3" id="frame-3">
+                <div class="ai">
+                    <span>
+                        <span class="ai-span">訂單列表</span>
+                        <span class="ai-span2">
+                            <br />
+                        </span>
+                        <span class="ai-span3">
+                            專為廣達電腦設計的一站式資訊管理系統，針對洶湧而來的筆記型電腦與客製化AI伺服器組裝訂單提出輕量化的解方！
+                        </span>
                     </span>
-                </span>
+                </div>
+                <div class="line-1"></div>
+                <div class="ai2">
+                    <span>
+                        <div>
+                            <label for="userFilter">選擇客戶:</label>
+                            <select id="userFilter">
+                                <option value="">全部客戶</option>
+                                <option value="Customer#1">Customer#1</option>
+                                <option value="Customer#2">Customer#2</option>
+                                <option value="Customer#3">Customer#3</option>
+                                <option value="Customer#4">Customer#4</option>
+                                <option value="Customer#5">Customer#5</option>
+                            </select>
+                        </div>
+                        <span class="ai-2-span">
+                            <table class="customer-table">
+                                <thead>
+                                    <tr>
+                                        <th>顧客編號</th>
+                                        <th>訂單編號</th>
+                                        <th>訂單狀態</th>
+                                        <th>訂單截止時間</th>
+                                        <th>預期收益(萬元)</th>
+                                        <th>產品集合</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="output"></tbody>
+                            </table>
+                        </span>
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="../webUI/js/orderListPage.js"></script>
-</body>
+        <script src="../webUI/js/globalConfig.js"></script>
+        <script src="../webUI/js/orderListPage.js"></script>
+    </body>
 </html>
