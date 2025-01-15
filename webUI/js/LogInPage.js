@@ -1,4 +1,4 @@
-var baseUrl = "http://127.0.0.1:8000"; // 部署時需修改
+var baseUrl = window.ENV_CONFIG.BASE_URL; // 部署時需修改
 
 // session 中有 token 則保持登入狀態
 document.addEventListener("DOMContentLoaded", function () {

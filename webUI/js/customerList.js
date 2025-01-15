@@ -1,7 +1,9 @@
 async function fetchCustomerData() {
     try {
         // 呼叫後端 API 獲取客戶數據
-        const response = await fetch('http://127.0.0.1:8000/api/customers');
+        const response = await fetch(
+            `${window.ENV_CONFIG.BASE_URL}/api/customers`
+        );
         const data = await response.json();
         showOnTable(data.customers);
     } catch (error) {
@@ -10,7 +12,7 @@ async function fetchCustomerData() {
 }
 
 function showOnTable(customers) {
-    const tbody = document.getElementById('output');
+    const tbody = document.getElementById("output");
     tbody.innerHTML = ""; // 清空表格內容
 
     // 定義 RFM 分組的排序優先級
@@ -19,7 +21,7 @@ function showOnTable(customers) {
         "次優先-忠誠邊陲客戶": 2,
         "一般-穩定客戶": 3,
         "次延後-低價值非活躍客戶": 4,
-        "最延後-流失或無價值客戶": 5
+        "最延後-流失或無價值客戶": 5,
     };
 
     // 定義 RFM 分組對應的顏色
@@ -28,11 +30,11 @@ function showOnTable(customers) {
         "次優先-忠誠邊陲客戶": "orange",
         "一般-穩定客戶": "yellow",
         "次延後-低價值非活躍客戶": "green",
-        "最延後-流失或無價值客戶": "gray"
+        "最延後-流失或無價值客戶": "gray",
     };
 
     // 如果後端返回的是數字 RFM 分組，轉換為描述
-    customers.forEach(customer => {
+    customers.forEach((customer) => {
         switch (customer.rfmGroup) {
             case "1":
                 customer.rfmGroup = "最優先-忠誠核心客戶";
@@ -56,8 +58,8 @@ function showOnTable(customers) {
     customers.sort((a, b) => rfmPriority[a.rfmGroup] - rfmPriority[b.rfmGroup]);
 
     // 渲染表格
-    customers.forEach(customer => {
-        const newRow = document.createElement('tr');
+    customers.forEach((customer) => {
+        const newRow = document.createElement("tr");
         newRow.innerHTML = `
             <td>${customer.userId}</td>
             <td>${customer.rfmGroup}</td>
@@ -79,6 +81,5 @@ function showOnTable(customers) {
     console.log("Table rendered with RFM group sorting and colors.");
 }
 
-
 // 瀏覽器載入時觸發
-document.addEventListener('DOMContentLoaded', fetchCustomerData);
+document.addEventListener("DOMContentLoaded", fetchCustomerData);

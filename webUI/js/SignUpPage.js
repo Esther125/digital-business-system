@@ -1,4 +1,4 @@
-var baseUrl = "http://127.0.0.1:8000";
+var baseUrl = window.ENV_CONFIG.BASE_URL;
 
 async function getData() {
     const passID = document.getElementById("passID").value;

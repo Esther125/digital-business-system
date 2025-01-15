@@ -1,11 +1,14 @@
 async function fetchBomData() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/get-bom', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        const response = await fetch(
+            `${window.ENV_CONFIG.BASE_URL}/api/get-bom`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -20,12 +23,12 @@ async function fetchBomData() {
 }
 
 function showOnTable(boms) {
-    const tbody = document.getElementById('output');
+    const tbody = document.getElementById("output");
     tbody.innerHTML = ""; // 清空表格
 
-    boms.forEach(bom => {
+    boms.forEach((bom) => {
         // 顯示 Product 行
-        const productRow = document.createElement('tr');
+        const productRow = document.createElement("tr");
         productRow.innerHTML = `
             <td>${bom.productId}</td>
             <td></td> <!-- 空白 Component -->
@@ -37,7 +40,7 @@ function showOnTable(boms) {
 
         // 顯示對應的 Component 行
         if (bom.components.length === 0) {
-            const noComponentRow = document.createElement('tr');
+            const noComponentRow = document.createElement("tr");
             noComponentRow.innerHTML = `
                 <td></td>
                 <td>No Components</td>
@@ -47,8 +50,8 @@ function showOnTable(boms) {
             `;
             tbody.appendChild(noComponentRow);
         } else {
-            bom.components.forEach(component => {
-                const componentRow = document.createElement('tr');
+            bom.components.forEach((component) => {
+                const componentRow = document.createElement("tr");
                 componentRow.innerHTML = `
                     <td></td> <!-- 空白 Product -->
                     <td>${component.componentId}</td>
@@ -63,4 +66,4 @@ function showOnTable(boms) {
 }
 
 // 瀏覽器載入時自動執行
-document.addEventListener('DOMContentLoaded', fetchBomData);
+document.addEventListener("DOMContentLoaded", fetchBomData);
