@@ -97,7 +97,6 @@ async def orderListPage():
         async with aiofiles.open("../webUI/403.html", mode="r") as f:
             html_content = await f.read()
         return HTMLResponse(content=html_content, status_code=403)
-        # raise HTTPException(status_code=403, detail="Access Denied")
 
     async with aiofiles.open("../webUI/orderListPage.html", mode="r") as f:
         html_content = await f.read()
@@ -110,7 +109,7 @@ async def CRMpage():
         async with aiofiles.open("../webUI/403.html", mode="r") as f:
             html_content = await f.read()
         return HTMLResponse(content=html_content, status_code=403)
-        # raise HTTPException(status_code=403, detail="Access Denied!!!!!!!")
+
     async with aiofiles.open("../webUI/CRMpage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -119,7 +118,10 @@ async def CRMpage():
 @router.get("/OMpage", response_class=HTMLResponse)
 async def OMpage():
     if not check_user_access(CURRENT_USER, "/OMpage"):
-        raise HTTPException(status_code=403, detail="Access Denied")
+        async with aiofiles.open("../webUI/403.html", mode="r") as f:
+            html_content = await f.read()
+        return HTMLResponse(content=html_content, status_code=403)
+
     async with aiofiles.open("../webUI/OMpage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -145,7 +147,7 @@ async def bomListPage():
         async with aiofiles.open("../webUI/403.html", mode="r") as f:
             html_content = await f.read()
         return HTMLResponse(content=html_content, status_code=403)
-        # raise HTTPException(status_code=403, detail="Access Denied")
+
     async with aiofiles.open("../webUI/bomListPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -157,7 +159,7 @@ async def componentInventoryPage():
         async with aiofiles.open("../webUI/403.html", mode="r") as f:
             html_content = await f.read()
         return HTMLResponse(content=html_content, status_code=403)
-        # raise HTTPException(status_code=403, detail="Access Denied")
+
     async with aiofiles.open("../webUI/componentInventoryPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -169,7 +171,7 @@ async def customerList():
         async with aiofiles.open("../webUI/403.html", mode="r") as f:
             html_content = await f.read()
         return HTMLResponse(content=html_content, status_code=403)
-        # raise HTTPException(status_code=403, detail="Access Denied")
+
     async with aiofiles.open("../webUI/customerList.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -181,7 +183,7 @@ async def productInventoryPage():
         async with aiofiles.open("../webUI/403.html", mode="r") as f:
             html_content = await f.read()
         return HTMLResponse(content=html_content, status_code=403)
-        # raise HTTPException(status_code=403, detail="Access Denied")
+
     async with aiofiles.open("../webUI/productInventoryPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -193,7 +195,7 @@ async def rfmCustomerGroupPage():
         async with aiofiles.open("../webUI/403.html", mode="r") as f:
             html_content = await f.read()
         return HTMLResponse(content=html_content, status_code=403)
-        # raise HTTPException(status_code=403, detail="Access Denied")
+
     async with aiofiles.open("../webUI/rfmCustomerGroupPage.html", mode="r") as f:
         html_content = await f.read()
     return HTMLResponse(content=html_content)
@@ -209,7 +211,7 @@ def sign_up(user: SignUpRequest):
     hashed_password = get_password_hash(user.setPassword)
     fake_users_db[user.emailAddress] = {
         "username": user.emailAddress,
-        "accountType": "customer",  # 默認賬戶類型
+        "accountType": "customer",  # 默認帳戶類型
         "full_name": "New User",  # 可根據需求自定義
         "email": user.emailAddress,
         "hashed_password": hashed_password,

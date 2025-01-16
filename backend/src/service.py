@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta, timezone
 import os
 from src.model import User, UserInDB
-from fastapi import HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 import jwt
@@ -134,8 +133,11 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta]):
 
 
 def check_user_access(user: User, page: str = ""):
-    allowed_pages = ROLE_PERMISSIONS.get(user.accountType, [])
-    if "*" in allowed_pages or page in allowed_pages:
-        return True
+    if user is not None:
+        allowed_pages = ROLE_PERMISSIONS.get(user.accountType, [])
+        if "*" in allowed_pages or page in allowed_pages:
+            return True
+        else:
+            return False
     else:
-        raise HTTPException(status_code=403, detail="Access denied")
+        return False
